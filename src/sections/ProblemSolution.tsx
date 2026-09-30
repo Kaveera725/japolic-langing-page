@@ -213,10 +213,11 @@ const TransitionDiagram: React.FC = () => (
 export const ProblemSolution: React.FC = () => {
   return (
     <section
-      id="problem-solution"
-      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light"
+      id="how-it-works"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-16"
       aria-labelledby="problem-heading"
     >
+      <div id="problem-solution" className="scroll-mt-24" />
       <Container>
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             PROBLEM PHASE

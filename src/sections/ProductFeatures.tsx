@@ -74,10 +74,11 @@ export const ProductFeatures: React.FC = () => {
 
   return (
     <section
-      id="capabilities"
-      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light"
+      id="product"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-16"
       aria-labelledby="cap-heading"
     >
+      <div id="capabilities" className="scroll-mt-24" />
       <Container>
         {/* ── Section Header ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
