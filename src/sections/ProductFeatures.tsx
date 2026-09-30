@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import { SystemStatusIndicator, TechnicalLabel } from '../components/visuals';
 
 /* ═══════════════════════════════════════════════════════════
    DATA
@@ -171,15 +172,16 @@ export const ProductFeatures: React.FC = () => {
           <div className="lg:col-span-8 order-1 lg:order-2">
             <div className="sticky top-24 rounded-md border border-hairline-light bg-canvas-elevated shadow-card overflow-hidden">
               {/* Title bar */}
-              <div className="flex items-center justify-between px-4 py-2.5 border-b border-hairline-light bg-canvas-subtle/50 font-mono text-[10px] tracking-wider text-ink-tertiary">
-                <span>SYSTEM TOPOLOGY // DATA LAYER ARCHITECTURE</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive opacity-60" />
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-olive" />
+              <div className="flex items-center justify-between px-4 py-2 border-b border-hairline-light bg-canvas-subtle/50 font-mono text-[10px] tracking-wider text-ink-tertiary">
+                <div className="flex items-center gap-2">
+                  <SystemStatusIndicator status="active" label="LIVE" size="sm" />
+                  <span className="font-semibold text-ink-secondary">
+                    SYSTEM TOPOLOGY // DATA LAYER ARCHITECTURE
                   </span>
-                  LIVE
-                </span>
+                </div>
+                <TechnicalLabel variant="bracket" size="xs">
+                  POSIX_VFS
+                </TechnicalLabel>
               </div>
 
               {/* SVG */}

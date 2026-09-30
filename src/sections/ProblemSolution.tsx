@@ -1,6 +1,13 @@
 import React from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import {
+  ServerNode,
+  StorageNode,
+  TechnicalLabel,
+  SystemStatusIndicator,
+  DataPath,
+} from '../components/visuals';
 import { ArrowRight } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════
@@ -371,6 +378,76 @@ export const ProblemSolution: React.FC = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-olive/20" />
               </div>
             ))}
+          </div>
+
+          {/* ── Visual Schematic: Unified Shared Cluster Architecture ── */}
+          <div className="mt-8 p-6 md:p-8 bg-canvas-elevated border border-hairline-light rounded-sm shadow-subtle">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-hairline-light gap-2">
+              <div className="flex items-center gap-2">
+                <SystemStatusIndicator status="active" label="VFS_UNIFIED" size="sm" />
+                <span className="font-mono text-xs font-semibold text-ink-primary">
+                  UNIFIED SHARED NAMESPACE: /mnt/shared
+                </span>
+              </div>
+              <div className="flex items-center gap-2 font-mono text-[11px] text-ink-tertiary">
+                <TechnicalLabel variant="bracket" size="xs">TOPOLOGY_COHERENT</TechnicalLabel>
+                <span>3 COMPUTE NODES · 1 POSIX VFS</span>
+              </div>
+            </div>
+
+            {/* 3 Server Nodes */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+              <ServerNode
+                name="node-01"
+                type="gpu"
+                status="active"
+                hardware="8× H100 GPU"
+                mountPoint="/mnt/shared"
+                throughput="2.4 GB/s"
+                compact={true}
+              />
+              <ServerNode
+                name="node-02"
+                type="gpu"
+                status="active"
+                hardware="8× H100 GPU"
+                mountPoint="/mnt/shared"
+                throughput="2.4 GB/s"
+                compact={true}
+              />
+              <ServerNode
+                name="node-03"
+                type="worker"
+                status="active"
+                hardware="128 vCPU Worker"
+                mountPoint="/mnt/shared"
+                throughput="1.8 GB/s"
+                compact={true}
+              />
+            </div>
+
+            {/* Data Paths connecting Compute to Japolic Cache */}
+            <div className="py-2">
+              <DataPath
+                label="Direct POSIX VFS Bus"
+                sublabel="zero-copy memory mapping"
+                protocol="LOCAL NVMe BUS"
+                throughput="6.6 GB/s AGGREGATE"
+              />
+            </div>
+
+            {/* Shared Japolic Storage Node */}
+            <div className="mt-4">
+              <StorageNode
+                name="Japolic Coherent Storage Fabric (Node-Local NVMe + Shared VFS)"
+                tier="nvme"
+                capacity="11.5 TB Total Cluster NVMe"
+                usedPercent={38}
+                latency="140 µs"
+                hitRatio="99.7%"
+                highlight={true}
+              />
+            </div>
           </div>
 
           {/* Section Footnote */}

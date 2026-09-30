@@ -1,4 +1,5 @@
 import React from 'react';
+import { SystemStatusIndicator, TechnicalLabel } from './visuals';
 
 export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
@@ -7,16 +8,22 @@ export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className =
     >
       {/* ── Instrument Title Bar ── */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-hairline-dark bg-[#1A1815]">
-        <div className="flex items-center gap-2 font-mono text-[11px] text-ink-inverse-mute tracking-wider">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-olive" />
-          </span>
-          <span>ARCH-TOPOLOGY // JAPOLIC VFS v0.9</span>
+        <div className="flex items-center gap-2">
+          <SystemStatusIndicator
+            status="active"
+            label="NOMINAL"
+            sublabel="// ARCH-TOPOLOGY JAPOLIC VFS v0.9"
+            theme="dark"
+            size="sm"
+          />
         </div>
-        <div className="hidden sm:flex items-center gap-5 font-mono text-[10px] text-ink-inverse-mute tracking-wide">
-          <span>PROTOCOL: POSIX/VFS</span>
-          <span>STATUS: NOMINAL</span>
+        <div className="hidden sm:flex items-center gap-3 font-mono text-[10px]">
+          <TechnicalLabel variant="outline" theme="dark" size="xs">
+            POSIX/VFS
+          </TechnicalLabel>
+          <TechnicalLabel variant="bracket" theme="dark" size="xs">
+            CACHE_COHERENT
+          </TechnicalLabel>
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Container } from '../components/Container';
+import { SystemStatusIndicator } from '../components/visuals';
 import { Menu, X, ArrowUpRight, Terminal } from 'lucide-react';
 
 interface NavLink {
@@ -90,12 +91,14 @@ export const Navbar: React.FC = () => {
             <div className="hidden sm:block h-3.5 w-px bg-hairline-strong" />
 
             {/* Small Technical Telemetry Metadata */}
-            <div className="hidden sm:flex items-center gap-2 px-2 py-0.5 rounded-xs border border-hairline-light bg-canvas-subtle/80 font-mono text-[11px] text-ink-tertiary">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-olive"></span>
-              </span>
-              <span className="tracking-wide">SYS_OK // POSIX-VFS</span>
+            <div className="hidden sm:block">
+              <SystemStatusIndicator
+                status="nominal"
+                label="SYS_OK"
+                sublabel="// POSIX-VFS"
+                theme="light"
+                size="sm"
+              />
             </div>
           </div>
 

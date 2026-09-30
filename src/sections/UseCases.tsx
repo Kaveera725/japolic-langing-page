@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import {
+  ServerNode,
+  StorageNode,
+  DataPath,
+  FilesystemTree,
+  S3StorageLayer,
+  TechnicalLabel,
+} from '../components/visuals';
 import { ArrowRight, Cpu, Layers, Zap, Server, ChevronRight } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════
@@ -141,130 +149,119 @@ export const UseCases: React.FC = () => {
 
                 {/* ── Technical Visual Cues (Distinct Visual Rhythm for each module) ── */}
                 <div className="mt-auto pt-4">
-                  {/* CUE 1: AI Workloads - High-Bandwidth Streaming Pipeline */}
+                  {/* CUE 1: AI Workloads - FilesystemTree & Streaming DataPath */}
                   {uc.cueType === 'pipeline' && (
-                    <div className="bg-canvas-subtle border border-hairline-light rounded-xs p-3.5 font-mono text-[11px]">
-                      <div className="flex items-center justify-between text-[10px] text-ink-tertiary border-b border-hairline-light pb-2 mb-2.5">
-                        <span className="flex items-center gap-1.5 text-olive font-semibold">
-                          <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
-                          DIRECT TRAINING STREAM
-                        </span>
-                        <span>ASYNC READ-AHEAD</span>
-                      </div>
-                      <div className="flex items-center justify-between gap-1 text-[11px] text-ink-secondary">
-                        <div className="px-2 py-1.5 bg-canvas-elevated border border-hairline-light rounded-xs text-center flex-1">
-                          <div className="text-[9px] text-ink-tertiary">PERSISTENT TIER</div>
-                          <span className="font-medium text-ink-primary">S3 / Object</span>
-                        </div>
-                        <div className="text-olive px-1">→</div>
-                        <div className="px-2 py-1.5 bg-canvas-elevated border border-olive/30 rounded-xs text-center flex-1">
-                          <div className="text-[9px] text-olive font-semibold">JAPOLIC VFS</div>
-                          <span className="font-medium text-olive">NVMe Cache</span>
-                        </div>
-                        <div className="text-olive px-1">→</div>
-                        <div className="px-2 py-1.5 bg-canvas-elevated border border-hairline-light rounded-xs text-center flex-1">
-                          <div className="text-[9px] text-ink-tertiary">GPU COMPUTE</div>
-                          <span className="font-medium text-ink-primary">PyTorch / VRAM</span>
-                        </div>
-                      </div>
-                      <div className="mt-2.5 pt-2 border-t border-hairline-light flex items-center justify-between text-[10px] text-ink-muted">
-                        <span>ZERO DOWNLOAD WAIT</span>
-                        <span className="text-olive">100% GPU UTILIZATION</span>
-                      </div>
+                    <div className="space-y-2">
+                      <FilesystemTree
+                        items={[
+                          {
+                            id: 'mnt',
+                            name: '/mnt/shared',
+                            type: 'vfs-mount',
+                            children: [
+                              {
+                                id: 'train-set',
+                                name: 'imagenet-21k-shuffled.parquet',
+                                type: 'file',
+                                size: '1.42 TB',
+                                cached: true,
+                                inode: '09120',
+                              },
+                              {
+                                id: 'weights',
+                                name: 'checkpoints/model-step-80k.pt',
+                                type: 'file',
+                                size: '128 GB',
+                                cached: true,
+                                inode: '09121',
+                              },
+                            ],
+                          },
+                        ]}
+                      />
+                      <DataPath
+                        label="PyTorch DataLoader"
+                        sublabel="Direct DMA"
+                        protocol="POSIX VFS"
+                        throughput="4.8 GB/s"
+                      />
                     </div>
                   )}
 
-                  {/* CUE 2: Data Pipelines - Concurrent Cluster Mount Topology */}
+                  {/* CUE 2: Data Pipelines - Multi-Worker Server Nodes & Connection */}
                   {uc.cueType === 'topology' && (
-                    <div className="bg-canvas-subtle border border-hairline-light rounded-xs p-3.5 font-mono text-[11px]">
-                      <div className="flex items-center justify-between text-[10px] text-ink-tertiary border-b border-hairline-light pb-2 mb-2.5">
-                        <span className="flex items-center gap-1.5 text-olive font-semibold">
-                          <span className="h-1.5 w-1.5 rounded-full bg-olive" />
-                          UNIFIED MOUNT TOPOLOGY
-                        </span>
-                        <span>POSIX /mnt/shared</span>
+                    <div className="space-y-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        <ServerNode
+                          name="worker-01"
+                          type="worker"
+                          status="active"
+                          hardware="64 vCPU · ETL Worker"
+                          mountPoint="/mnt/shared"
+                          throughput="1.8 GB/s"
+                          compact={true}
+                        />
+                        <ServerNode
+                          name="worker-64"
+                          type="worker"
+                          status="active"
+                          hardware="64 vCPU · Spark Node"
+                          mountPoint="/mnt/shared"
+                          throughput="1.8 GB/s"
+                          compact={true}
+                        />
                       </div>
-                      <div className="space-y-1.5">
-                        <div className="flex items-center justify-between px-2.5 py-1 bg-canvas-elevated border border-hairline-light rounded-xs text-[11px]">
-                          <span className="text-ink-secondary">Worker 01..64 (ETL Node)</span>
-                          <span className="text-olive font-medium">rw-shared</span>
+                      <div className="p-2.5 bg-canvas-subtle border border-hairline-light rounded-xs flex items-center justify-between font-mono text-[10px]">
+                        <div className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
+                          <span className="font-semibold text-olive">ZERO RSYNC ORCHESTRATION</span>
                         </div>
-                        <div className="flex items-center justify-between px-2.5 py-1 bg-canvas-elevated border border-hairline-light rounded-xs text-[11px]">
-                          <span className="text-ink-secondary">Analytics Engine (Spark)</span>
-                          <span className="text-olive font-medium">shared-namespace</span>
-                        </div>
-                      </div>
-                      <div className="mt-2.5 pt-2 border-t border-hairline-light flex items-center justify-between text-[10px] text-ink-muted">
-                        <span>NO RSYNC OVERHEAD</span>
-                        <span className="text-ink-primary font-medium">ZERO DATA DULICATION</span>
+                        <span className="text-ink-secondary">64 NODES ON ONE MOUNT</span>
                       </div>
                     </div>
                   )}
 
-                  {/* CUE 3: High-Performance - Latency Comparison Telemetry */}
+                  {/* CUE 3: High-Performance - Dedicated StorageNode with Latency Gauge */}
                   {uc.cueType === 'telemetry' && (
-                    <div className="bg-canvas-subtle border border-hairline-light rounded-xs p-3.5 font-mono text-[11px]">
-                      <div className="flex items-center justify-between text-[10px] text-ink-tertiary border-b border-hairline-light pb-2 mb-2.5">
-                        <span className="flex items-center gap-1.5 text-olive font-semibold">
-                          <span className="h-1.5 w-1.5 rounded-full bg-olive" />
-                          READ LATENCY BENCHMARK
-                        </span>
-                        <span>I/O RESPONSE</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div>
-                          <div className="flex justify-between text-[10px] mb-1">
-                            <span className="text-olive font-medium">Japolic NVMe Path</span>
-                            <span className="text-olive font-semibold">140 µs (Local equivalent)</span>
-                          </div>
-                          <div className="h-2 w-full bg-canvas-elevated rounded-xs overflow-hidden border border-hairline-light">
-                            <div className="h-full bg-olive w-[8%]" />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="flex justify-between text-[10px] mb-1">
-                            <span className="text-ink-tertiary">Traditional Cloud NFS</span>
-                            <span className="text-ink-muted">8,400 µs (Network wall)</span>
-                          </div>
-                          <div className="h-2 w-full bg-canvas-elevated rounded-xs overflow-hidden border border-hairline-light">
-                            <div className="h-full bg-ink-muted/50 w-[85%]" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-2.5 pt-2 border-t border-hairline-light flex items-center justify-between text-[10px] text-ink-muted">
-                        <span>NODE-LOCAL EXECUTION</span>
-                        <span className="text-olive">60× REDUCTION IN WAIT</span>
+                    <div className="space-y-2">
+                      <StorageNode
+                        name="Node-Local NVMe VFS Cache"
+                        tier="nvme"
+                        latency="140 µs"
+                        hitRatio="99.4%"
+                        capacity="3.84 TB"
+                        usedPercent={48}
+                        highlight={true}
+                      />
+                      <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-tertiary">
+                        <span>VS CLOUD NFS (8,400 µs)</span>
+                        <span className="font-semibold text-olive">60× LATENCY ADVANTAGE</span>
                       </div>
                     </div>
                   )}
 
-                  {/* CUE 4: Infrastructure Teams - Architecture Decoupling Matrix */}
+                  {/* CUE 4: Infrastructure Teams - S3 Persistence Layer */}
                   {uc.cueType === 'matrix' && (
-                    <div className="bg-canvas-subtle border border-hairline-light rounded-xs p-3.5 font-mono text-[11px]">
-                      <div className="flex items-center justify-between text-[10px] text-ink-tertiary border-b border-hairline-light pb-2 mb-2.5">
-                        <span className="flex items-center gap-1.5 text-olive font-semibold">
-                          <span className="h-1.5 w-1.5 rounded-full bg-olive" />
-                          STORAGE ORCHESTRATION
-                        </span>
-                        <span>STORAGE-COMPUTE INDEPENDENCE</span>
-                      </div>
-                      <div className="grid grid-cols-3 gap-1.5 text-center text-[10px]">
-                        <div className="p-1.5 bg-canvas-elevated border border-hairline-light rounded-xs">
-                          <div className="text-ink-tertiary text-[9px]">COMPUTE</div>
-                          <span className="text-ink-primary font-medium">Spot / GPUs</span>
-                        </div>
-                        <div className="p-1.5 bg-canvas-elevated border border-olive/30 rounded-xs">
-                          <div className="text-olive text-[9px] font-semibold">JAPOLIC</div>
-                          <span className="text-olive font-medium">VFS Fabric</span>
-                        </div>
-                        <div className="p-1.5 bg-canvas-elevated border border-hairline-light rounded-xs">
-                          <div className="text-ink-tertiary text-[9px]">STORAGE</div>
-                          <span className="text-ink-primary font-medium">Any S3 Backend</span>
-                        </div>
-                      </div>
-                      <div className="mt-2.5 pt-2 border-t border-hairline-light flex items-center justify-between text-[10px] text-ink-muted">
-                        <span>CLOUD AGNOSTIC</span>
-                        <span className="text-ink-primary font-medium">ZERO VENDOR LOCK-IN</span>
+                    <div className="space-y-2">
+                      <S3StorageLayer
+                        buckets={[
+                          {
+                            uri: 's3://production-lake-us-east',
+                            provider: 'aws-s3',
+                            totalSize: '48.2 TB',
+                            syncState: 'synced',
+                          },
+                          {
+                            uri: 'r2://inference-edge-cache',
+                            provider: 'r2',
+                            totalSize: '12.4 TB',
+                            syncState: 'synced',
+                          },
+                        ]}
+                      />
+                      <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-muted">
+                        <TechnicalLabel variant="bracket" size="xs">DECOUPLED_TIER</TechnicalLabel>
+                        <span className="text-ink-primary font-medium">ZERO STORAGE VENDOR LOCK-IN</span>
                       </div>
                     </div>
                   )}

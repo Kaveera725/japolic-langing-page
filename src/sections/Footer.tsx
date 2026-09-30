@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
+import { SystemStatusIndicator } from '../components/visuals';
 import { ArrowRight, Check, Copy, ExternalLink, Terminal } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════
@@ -64,9 +65,14 @@ export const Footer: React.FC = () => {
         <div className="pt-20 sm:pt-28 pb-16 md:pb-24 border-b border-hairline-dark">
           <div className="max-w-3xl">
             {/* Technical system status badge */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-6 rounded-xs border border-white/10 bg-white/[0.03] font-mono text-[11px] text-ink-inverse-sub tracking-wider">
-              <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
-              <span>VFS ENGINE v0.9.4 · ALL SYSTEMS OPERATIONAL</span>
+            <div className="mb-6">
+              <SystemStatusIndicator
+                status="nominal"
+                label="ALL SYSTEMS OPERATIONAL"
+                sublabel="VFS ENGINE v0.9.4"
+                theme="dark"
+                size="sm"
+              />
             </div>
 
             {/* Closing statement */}
