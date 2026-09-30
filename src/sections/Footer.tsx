@@ -93,31 +93,31 @@ export const Footer: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
                 <a
                   href="#contact"
-                  className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#4D6A53] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+                  className="group min-h-[46px] inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#4D6A53] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
                 >
                   <span>Get Started</span>
                   <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
                 </a>
 
-              {/* Monospace quick install prompt with copy button */}
-              <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-canvas-dark-card border border-hairline-dark rounded-xs font-mono text-xs text-ink-inverse-sub hover:border-hairline-dark-subtle transition-colors">
-                <div className="flex items-center gap-2 truncate">
-                  <Terminal size={14} className="text-olive flex-shrink-0" />
-                  <span className="text-ink-inverse-mute select-none">$</span>
-                  <span className="truncate text-ink-inverse font-mono">{installCmd}</span>
+                {/* Monospace quick install prompt with copy button */}
+                <div className="flex items-center justify-between gap-3 px-3.5 py-2 bg-canvas-dark-card border border-hairline-dark rounded-xs font-mono text-xs text-ink-inverse-sub hover:border-hairline-dark-subtle transition-colors">
+                  <div className="flex items-center gap-2 truncate">
+                    <Terminal size={14} className="text-olive flex-shrink-0" />
+                    <span className="text-ink-inverse-mute select-none">$</span>
+                    <span className="truncate text-ink-inverse font-mono">{installCmd}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={copyToClipboard}
+                    aria-label="Copy install command"
+                    className="p-2 min-h-[36px] min-w-[36px] flex items-center justify-center hover:text-ink-inverse text-ink-inverse-mute transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive rounded-xs flex-shrink-0 active:scale-95"
+                  >
+                    {copied ? <Check size={14} className="text-olive" /> : <Copy size={14} />}
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={copyToClipboard}
-                  aria-label="Copy install command"
-                  className="p-1 hover:text-ink-inverse text-ink-inverse-mute transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive rounded-xs flex-shrink-0"
-                >
-                  {copied ? <Check size={14} className="text-olive" /> : <Copy size={14} />}
-                </button>
               </div>
-            </div>
 
-            <div className="flex items-center gap-4 font-mono text-[11px] text-ink-inverse-mute">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-[11px] text-ink-inverse-mute">
               <span>Single binary</span>
               <span className="text-hairline-dark">•</span>
               <span>POSIX compatible</span>
@@ -131,7 +131,7 @@ export const Footer: React.FC = () => {
         {/* ═══════════════════════════════════════════════════════
             MAIN FOOTER DIRECTORY (Wordmark + Navigation Columns)
             ═══════════════════════════════════════════════════════ */}
-        <div className="py-14 md:py-20 border-b border-hairline-dark">
+        <div className="py-12 md:py-16 border-b border-hairline-dark">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12">
             {/* Col 1-5: Brand & Positioning Statement */}
             <div className="md:col-span-5 flex flex-col justify-between">
@@ -163,7 +163,7 @@ export const Footer: React.FC = () => {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="font-sans text-sm text-ink-inverse-sub hover:text-ink-inverse transition-colors inline-block"
+                      className="font-sans text-sm text-ink-inverse-sub hover:text-ink-inverse transition-colors inline-block py-1"
                     >
                       {item.label}
                     </a>
@@ -182,7 +182,7 @@ export const Footer: React.FC = () => {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="font-sans text-sm text-ink-inverse-sub hover:text-ink-inverse transition-colors inline-flex items-center gap-1.5"
+                      className="font-sans text-sm text-ink-inverse-sub hover:text-ink-inverse transition-colors inline-flex items-center gap-1.5 py-1"
                     >
                       <span>{item.label}</span>
                       {item.external && (
@@ -205,17 +205,17 @@ export const Footer: React.FC = () => {
         {/* ═══════════════════════════════════════════════════════
             BOTTOM METADATA BAR (Copyright, Legal, Status)
             ═══════════════════════════════════════════════════════ */}
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-ink-inverse-mute">
+        <div className="py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-ink-inverse-mute">
           <div>
             © {new Date().getFullYear()} Japolic Technologies, Inc. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             {LEGAL_LINKS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="hover:text-ink-inverse transition-colors"
+                className="hover:text-ink-inverse transition-colors py-1 inline-block"
               >
                 {item.label}
               </a>

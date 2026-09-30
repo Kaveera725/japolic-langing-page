@@ -185,10 +185,10 @@ export const Navbar: React.FC = () => {
           {/* =================================================================
               MOBILE: COMPACT ACTIONS & ACCESSIBLE HAMBURGER
               ================================================================= */}
-          <div className="flex md:hidden items-center gap-2.5">
+          <div className="flex md:hidden items-center gap-2">
             <a
               href="#get-started"
-              className="px-2.5 py-1 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
+              className="h-9 px-3 flex items-center justify-center rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
             >
               Get Started
             </a>
@@ -200,7 +200,7 @@ export const Navbar: React.FC = () => {
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
-              className="p-1.5 rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              className="h-9 w-9 flex items-center justify-center rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
             >
               {mobileMenuOpen ? (
                 <X size={18} className="transition-transform duration-150 rotate-90" />
@@ -243,7 +243,7 @@ export const Navbar: React.FC = () => {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between py-2.5 px-2 rounded-xs text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive ${
+                    className={`flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-xs text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive ${
                       isActive
                         ? 'bg-olive-wash text-olive font-semibold'
                         : 'text-ink-primary hover:bg-canvas-subtle'
@@ -264,7 +264,7 @@ export const Navbar: React.FC = () => {
               <a
                 href="#get-started"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
+                className="w-full min-h-[46px] flex items-center justify-center gap-2 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium border border-[#2F4233] interactive-button shadow-subtle"
               >
                 <span>Get Started — Request Early Access</span>
                 <ArrowUpRight size={14} />

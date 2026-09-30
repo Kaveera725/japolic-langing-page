@@ -27,8 +27,104 @@ export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className =
         </div>
       </div>
 
-      {/* ── SVG Engineering Schematic ── */}
-      <div className="w-full overflow-x-auto p-3 sm:p-5">
+      {/* ── Mobile Architecture View (Dedicated vertical engineering stack for screens < sm) ── */}
+      <div className="sm:hidden p-3.5 space-y-2.5 bg-[#161513]">
+        {/* Tier 1: Compute Cluster */}
+        <div className="p-3 bg-[#1E1C19] border border-hairline-dark rounded-xs">
+          <div className="flex items-center justify-between font-mono text-[10px] text-ink-inverse-mute mb-2">
+            <span>// COMPUTE CLUSTER</span>
+            <span className="text-olive-light font-medium">2 NODES ACTIVE</span>
+          </div>
+          <div className="space-y-1.5 font-mono text-xs">
+            <div className="flex items-center justify-between p-2 bg-[#141311] border border-hairline-dark rounded-xs">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
+                <span className="text-ink-inverse font-semibold">node-01</span>
+                <span className="text-[10px] text-ink-inverse-sub">H100 GPU</span>
+              </div>
+              <span className="text-[10px] text-olive-light font-mono">/mnt/shared</span>
+            </div>
+            <div className="flex items-center justify-between p-2 bg-[#141311] border border-hairline-dark rounded-xs">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-olive" />
+                <span className="text-ink-inverse font-semibold">node-02</span>
+                <span className="text-[10px] text-ink-inverse-sub">H100 GPU</span>
+              </div>
+              <span className="text-[10px] text-olive-light font-mono">/mnt/shared</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bus Flow Indicator */}
+        <div className="flex items-center justify-center gap-2 py-0.5 font-mono text-[10px] text-olive-light">
+          <div className="h-3 w-px bg-olive/50" />
+          <span className="bg-[#1E1C19] px-2.5 py-0.5 border border-olive/30 rounded-xs tracking-wider">
+            POSIX VFS DIRECT BUS ↓
+          </span>
+          <div className="h-3 w-px bg-olive/50" />
+        </div>
+
+        {/* Tier 2: Japolic Core Engine */}
+        <div className="p-3.5 bg-[#1A1815] border border-olive/40 rounded-xs shadow-subtle">
+          <div className="flex items-center justify-between font-mono text-[11px] font-semibold text-olive-light mb-2.5 pb-1.5 border-b border-hairline-dark">
+            <span>▸ JAPOLIC FILE SYSTEM ENGINE</span>
+            <span className="text-[10px] text-ink-inverse-mute">v0.9.4</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2 font-mono text-xs">
+            <div className="p-2.5 bg-[#161513] border-l-2 border-l-olive border border-hairline-dark rounded-xs">
+              <div className="text-[10px] text-olive font-semibold tracking-wider">COHERENT CACHE</div>
+              <div className="text-ink-inverse text-xs font-medium mt-0.5">NVMe / RAM Hot Tier</div>
+              <div className="text-[10px] text-ink-inverse-mute mt-0.5">Sub-ms read · Direct bus transfer</div>
+            </div>
+
+            <div className="p-2.5 bg-[#161513] border-l-2 border-l-[#787268] border border-hairline-dark rounded-xs">
+              <div className="text-[10px] text-ink-inverse-sub font-semibold tracking-wider">METADATA COORDINATOR</div>
+              <div className="text-ink-inverse text-xs font-medium mt-0.5">Distributed Lock-Free Sync</div>
+              <div className="text-[10px] text-ink-inverse-mute mt-0.5">Multi-writer · Zero NFS contention</div>
+            </div>
+          </div>
+
+          <div className="mt-2.5 p-1.5 bg-[#141311] border border-hairline-dark rounded-xs font-mono text-[9px] text-ink-inverse-mute flex items-center justify-between">
+            <span>AUTO TIERING ENGINE</span>
+            <span className="text-olive-light font-medium">LRU EVICTION ACTIVE</span>
+          </div>
+        </div>
+
+        {/* Sync Flow Indicator */}
+        <div className="flex items-center justify-center gap-2 py-0.5 font-mono text-[10px] text-amber">
+          <div className="h-3 w-px bg-amber/50" />
+          <span className="bg-[#1E1C19] px-2.5 py-0.5 border border-amber/30 rounded-xs tracking-wider">
+            ASYNC S3 OBJECT SYNC ↓
+          </span>
+          <div className="h-3 w-px bg-amber/50" />
+        </div>
+
+        {/* Tier 3: Persistence Layer */}
+        <div className="p-3 bg-[#1E1C19] border border-hairline-dark rounded-xs">
+          <div className="flex items-center justify-between font-mono text-[10px] text-ink-inverse-mute mb-2">
+            <span>// COMMODITY OBJECT STORAGE</span>
+            <span className="text-ink-inverse-sub">S3 COMPATIBLE</span>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5 font-mono text-center">
+            <div className="p-2 bg-[#141311] border border-hairline-dark rounded-xs">
+              <div className="text-xs text-ink-inverse font-medium">AWS S3</div>
+              <div className="text-[9px] text-ink-inverse-mute mt-0.5">Standard</div>
+            </div>
+            <div className="p-2 bg-[#141311] border border-hairline-dark rounded-xs">
+              <div className="text-xs text-ink-inverse font-medium">R2</div>
+              <div className="text-[9px] text-ink-inverse-mute mt-0.5">0$ Egress</div>
+            </div>
+            <div className="p-2 bg-[#141311] border border-hairline-dark rounded-xs">
+              <div className="text-xs text-ink-inverse font-medium">MinIO</div>
+              <div className="text-[9px] text-ink-inverse-mute mt-0.5">On-Prem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Desktop SVG Engineering Schematic (sm and above) ── */}
+      <div className="hidden sm:block w-full overflow-x-auto p-3 sm:p-5">
         <svg
           viewBox="0 0 880 430"
           className="w-full min-w-[680px] h-auto select-none"

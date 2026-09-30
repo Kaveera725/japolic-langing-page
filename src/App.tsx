@@ -8,9 +8,9 @@ import { Footer } from './sections/Footer';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-canvas-base text-ink-primary font-sans">
+    <div className="min-h-screen flex flex-col bg-canvas-base text-ink-primary font-sans overflow-x-hidden">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow overflow-x-hidden">
         <Hero />
         <ProblemSolution />
         <ProductFeatures />

@@ -187,8 +187,82 @@ export const ProductFeatures: React.FC = () => {
                 </TechnicalLabel>
               </div>
 
-              {/* SVG */}
-              <div className="p-3 sm:p-5 overflow-x-auto">
+              {/* Mobile Dedicated Interactive Architecture Topology (< sm) */}
+              <div className="sm:hidden p-3.5 space-y-2 bg-canvas-base border-b border-hairline-light">
+                {/* Layer 0: Workloads */}
+                <div
+                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                    active === null || active === 0
+                      ? 'bg-canvas-elevated border-hairline-strong'
+                      : 'bg-canvas-subtle/50 border-hairline-light opacity-60'
+                  }`}
+                >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-ink-tertiary mb-1">
+                    <span>LAYER 01 // WORKLOADS</span>
+                    <span>AI · ETL · APPS</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 font-mono text-xs text-ink-primary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-olive" />
+                    <span className="font-medium">Distributed Compute Applications</span>
+                  </div>
+                </div>
+
+                <div className="flex justify-center text-ink-muted text-[10px] font-mono select-none">
+                  ↓ POSIX MOUNT
+                </div>
+
+                {/* Layer 1: Compute Nodes & Japolic VFS */}
+                <div
+                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                    active === 0 || active === 1 || active === 3
+                      ? 'bg-olive-wash/60 border-olive/50 shadow-subtle'
+                      : 'bg-canvas-elevated border-hairline-light opacity-75'
+                  }`}
+                >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-olive font-semibold mb-1">
+                    <span>LAYER 02 // JAPOLIC SHARED VFS</span>
+                    <span>COHERENT CACHE</span>
+                  </div>
+                  <div className="text-xs font-mono text-ink-primary font-medium">
+                    Node-Local NVMe / RAM Cache
+                  </div>
+                  <div className="text-[10px] font-mono text-ink-secondary mt-0.5">
+                    Sub-ms reads · Direct kernel VFS bus
+                  </div>
+                </div>
+
+                <div className="flex justify-center text-ink-muted text-[10px] font-mono select-none">
+                  ↕ ZERO-COPY SYNC
+                </div>
+
+                {/* Layer 2: Persistence */}
+                <div
+                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                    active === 2 || active === 3
+                      ? 'bg-olive-wash/60 border-olive/50 shadow-subtle'
+                      : 'bg-canvas-elevated border-hairline-light opacity-75'
+                  }`}
+                >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-ink-tertiary font-semibold mb-1">
+                    <span>LAYER 03 // OBJECT PERSISTENCE</span>
+                    <span className="text-olive">S3 PROTOCOL</span>
+                  </div>
+                  <div className="text-xs font-mono text-ink-primary font-medium">
+                    AWS S3 · Cloudflare R2 · MinIO
+                  </div>
+                  <div className="text-[10px] font-mono text-ink-secondary mt-0.5">
+                    Continuous tiering · Commodity pricing
+                  </div>
+                </div>
+
+                {/* Mobile Interactive Hint */}
+                <div className="pt-1 text-center font-mono text-[10px] text-ink-muted">
+                  Tap any capability below to inspect system layers
+                </div>
+              </div>
+
+              {/* Desktop SVG Schematic (sm and above) */}
+              <div className="hidden sm:block p-3 sm:p-5 overflow-x-auto">
                 <svg
                   viewBox="0 0 680 430"
                   className="w-full min-w-[580px] h-auto select-none"

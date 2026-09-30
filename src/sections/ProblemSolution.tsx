@@ -349,7 +349,7 @@ export const ProblemSolution: React.FC = () => {
             {RESOLUTIONS.map((item, idx) => (
               <div
                 key={item.num}
-                className={`relative p-6 sm:p-8 group hover:bg-[#FAF8F3] transition-colors duration-200 ${
+                className={`relative p-5 sm:p-8 group hover:bg-[#FAF8F3] transition-colors duration-200 ${
                   idx < RESOLUTIONS.length - 1
                     ? 'border-b md:border-b-0 md:border-r border-hairline-light'
                     : ''
@@ -383,7 +383,7 @@ export const ProblemSolution: React.FC = () => {
 
           {/* ── Visual Schematic: Unified Shared Cluster Architecture ── */}
           <ScrollReveal delayMs={80}>
-            <div className="mt-8 p-6 md:p-8 bg-canvas-elevated border border-hairline-light rounded-sm shadow-subtle hover:shadow-card transition-shadow duration-300">
+            <div className="mt-8 p-4 sm:p-6 md:p-8 bg-canvas-elevated border border-hairline-light rounded-sm shadow-subtle hover:shadow-card transition-shadow duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-hairline-light gap-2">
               <div className="flex items-center gap-2">
                 <SystemStatusIndicator status="active" label="VFS_UNIFIED" size="sm" />

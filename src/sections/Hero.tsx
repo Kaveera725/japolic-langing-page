@@ -65,7 +65,7 @@ export const Hero: React.FC = () => {
         {/* Headline */}
         <h1
           id="hero-heading"
-          className="font-display text-[2.5rem] sm:text-[3.2rem] md:text-[3.75rem] lg:text-[4.25rem] font-medium leading-[1.06] tracking-tight text-ink-inverse max-w-[840px] mb-5"
+          className="font-display text-[2.2rem] sm:text-[3rem] md:text-[3.75rem] lg:text-[4.25rem] font-medium leading-[1.08] tracking-tight text-ink-inverse max-w-[840px] mb-5"
         >
           Shared storage.
           <br />
@@ -81,19 +81,19 @@ export const Hero: React.FC = () => {
         </p>
 
         {/* Action Row: CTAs & Quick-Mount Snippet */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-7 mb-10 lg:mb-14">
-          {/* Primary & Secondary CTA */}
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-7 mb-8 lg:mb-14">
+          {/* Primary & Secondary CTA (full-width stacked on mobile for thumb reach) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
             <a
               href="#capabilities"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+              className="group min-h-[46px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
             >
               <span>Explore Japolic</span>
               <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
             </a>
             <a
               href="#docs"
-              className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              className="group min-h-[46px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
             >
               <BookOpen size={14} strokeWidth={1.8} className="transition-transform duration-150 group-hover:-translate-y-0.5" />
               <span>Read the docs</span>
@@ -113,13 +113,13 @@ export const Hero: React.FC = () => {
               </div>
               <button
                 onClick={handleCopy}
-                className="ml-2.5 shrink-0 p-1 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
+                className="ml-2 shrink-0 p-2 min-h-[36px] min-w-[36px] flex items-center justify-center text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
                 aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
               >
                 {copied ? (
-                  <Check size={12} className="text-olive-light" />
+                  <Check size={14} className="text-olive-light" />
                 ) : (
-                  <Copy size={12} />
+                  <Copy size={14} />
                 )}
               </button>
             </div>

@@ -113,7 +113,7 @@ export const UseCases: React.FC = () => {
                   key={uc.num}
                   onMouseEnter={() => setActiveTab(index)}
                   onMouseLeave={() => setActiveTab(null)}
-                  className={`relative bg-canvas-elevated p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
+                  className={`relative bg-canvas-elevated p-5 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
                     isHovered ? 'bg-[#FAF8F2]' : ''
                   }`}
                 >
@@ -193,7 +193,7 @@ export const UseCases: React.FC = () => {
                     {/* CUE 2: Data Pipelines - Multi-Worker Server Nodes & Connection */}
                     {uc.cueType === 'topology' && (
                       <div className="space-y-2">
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           <ServerNode
                             name="worker-01"
                             type="worker"
@@ -276,7 +276,7 @@ export const UseCases: React.FC = () => {
 
         {/* ── Section Terminal CTA ── */}
         <ScrollReveal delayMs={100}>
-          <div className="mt-14 md:mt-20 pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-8 sm:p-10 border border-hairline-light rounded-xs shadow-subtle hover:shadow-card transition-shadow duration-300">
+          <div className="mt-14 md:mt-20 pt-8 sm:pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-6 sm:p-10 border border-hairline-light rounded-xs shadow-subtle hover:shadow-card transition-shadow duration-300">
             <div className="max-w-xl text-center md:text-left">
               <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">
                 EVALUATE JAPOLIC IN YOUR ENVIRONMENT
@@ -292,14 +292,14 @@ export const UseCases: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <a
                 href="#how-it-works"
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2"
+                className="group w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2"
               >
                 <span>Explore how Japolic works</span>
                 <ArrowRight size={16} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#docs"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xs bg-canvas-subtle border border-hairline-strong text-ink-primary font-sans text-sm font-medium hover:bg-canvas-sunken/40 transition-colors interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xs bg-canvas-subtle border border-hairline-strong text-ink-primary font-sans text-sm font-medium hover:bg-canvas-sunken/40 transition-colors interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
               >
                 <span>Read technical specs</span>
                 <ChevronRight size={15} />
