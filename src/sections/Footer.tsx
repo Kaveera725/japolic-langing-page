@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
+import { ScrollReveal } from '../components/ScrollReveal';
 import { SystemStatusIndicator } from '../components/visuals';
 import { ArrowRight, Check, Copy, ExternalLink, Terminal } from 'lucide-react';
 
@@ -62,40 +63,41 @@ export const Footer: React.FC = () => {
         {/* ═══════════════════════════════════════════════════════
             PRE-FOOTER CONCLUSION CTA BLOCK
             ═══════════════════════════════════════════════════════ */}
-        <div className="pt-20 sm:pt-28 pb-16 md:pb-24 border-b border-hairline-dark">
-          <div className="max-w-3xl">
-            {/* Technical system status badge */}
-            <div className="mb-6">
-              <SystemStatusIndicator
-                status="nominal"
-                label="ALL SYSTEMS OPERATIONAL"
-                sublabel="VFS ENGINE v0.9.4"
-                theme="dark"
-                size="sm"
-              />
-            </div>
+        <ScrollReveal>
+          <div className="pt-20 sm:pt-28 pb-16 md:pb-24 border-b border-hairline-dark">
+            <div className="max-w-3xl">
+              {/* Technical system status badge */}
+              <div className="mb-6">
+                <SystemStatusIndicator
+                  status="nominal"
+                  label="ALL SYSTEMS OPERATIONAL"
+                  sublabel="VFS ENGINE v0.9.4"
+                  theme="dark"
+                  size="sm"
+                />
+              </div>
 
-            {/* Closing statement */}
-            <h2
-              id="footer-heading"
-              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-ink-inverse leading-[1.12] mb-6"
-            >
-              Build faster on data that keeps up.
-            </h2>
-
-            <p className="font-sans text-base sm:text-lg text-ink-inverse-sub leading-relaxed mb-8 max-w-2xl">
-              Shared storage without the network bottleneck. Deploy Japolic alongside your compute nodes and stream multi-terabyte datasets directly from object persistence with local NVMe response times.
-            </p>
-
-            {/* Action Bar: Primary CTA + Terminal Quickstart */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#4D6A53] shadow-subtle hover:bg-olive-light active:bg-olive-dim transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+              {/* Closing statement */}
+              <h2
+                id="footer-heading"
+                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-ink-inverse leading-[1.12] mb-6"
               >
-                <span>Get Started</span>
-                <ArrowRight size={15} strokeWidth={2} />
-              </a>
+                Build faster on data that keeps up.
+              </h2>
+
+              <p className="font-sans text-base sm:text-lg text-ink-inverse-sub leading-relaxed mb-8 max-w-2xl">
+                Shared storage without the network bottleneck. Deploy Japolic alongside your compute nodes and stream multi-terabyte datasets directly from object persistence with local NVMe response times.
+              </p>
+
+              {/* Action Bar: Primary CTA + Terminal Quickstart */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
+                <a
+                  href="#contact"
+                  className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#4D6A53] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
+                </a>
 
               {/* Monospace quick install prompt with copy button */}
               <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-canvas-dark-card border border-hairline-dark rounded-xs font-mono text-xs text-ink-inverse-sub hover:border-hairline-dark-subtle transition-colors">
@@ -124,6 +126,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
         </div>
+      </ScrollReveal>
 
         {/* ═══════════════════════════════════════════════════════
             MAIN FOOTER DIRECTORY (Wordmark + Navigation Columns)

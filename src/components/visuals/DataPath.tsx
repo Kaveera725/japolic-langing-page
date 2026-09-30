@@ -46,10 +46,10 @@ export const DataPath: React.FC<DataPathProps> = ({
         >
           {flowActive && (
             <div
-              className={`absolute bg-olive ${
+              className={`absolute bg-olive rounded-full opacity-70 ${
                 isHorizontal
-                  ? 'h-full w-12 animate-marquee'
-                  : 'w-full h-12 animate-pulse'
+                  ? 'h-1.5 w-8 -top-[2px] animate-packet-horizontal'
+                  : 'w-1.5 h-8 -left-[2px] animate-packet-vertical'
               }`}
             />
           )}

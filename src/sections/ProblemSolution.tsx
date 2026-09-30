@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import { ScrollReveal } from '../components/ScrollReveal';
 import {
   ServerNode,
   StorageNode,
@@ -348,7 +349,7 @@ export const ProblemSolution: React.FC = () => {
             {RESOLUTIONS.map((item, idx) => (
               <div
                 key={item.num}
-                className={`relative p-6 sm:p-8 ${
+                className={`relative p-6 sm:p-8 group hover:bg-[#FAF8F3] transition-colors duration-200 ${
                   idx < RESOLUTIONS.length - 1
                     ? 'border-b md:border-b-0 md:border-r border-hairline-light'
                     : ''
@@ -356,7 +357,7 @@ export const ProblemSolution: React.FC = () => {
               >
                 {/* Top metadata row */}
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-display text-2xl font-medium text-olive/70">
+                  <span className="font-display text-2xl font-medium text-olive/70 group-hover:text-olive transition-colors duration-200">
                     {item.num}
                   </span>
                   <span className="font-mono text-[10px] font-semibold tracking-wider text-olive uppercase px-1.5 py-0.5 rounded-xs bg-olive-wash border border-olive/15">
@@ -375,13 +376,14 @@ export const ProblemSolution: React.FC = () => {
                 </p>
 
                 {/* Bottom olive accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-olive/20" />
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-olive/20 group-hover:bg-olive transition-colors duration-200" />
               </div>
             ))}
           </div>
 
           {/* ── Visual Schematic: Unified Shared Cluster Architecture ── */}
-          <div className="mt-8 p-6 md:p-8 bg-canvas-elevated border border-hairline-light rounded-sm shadow-subtle">
+          <ScrollReveal delayMs={80}>
+            <div className="mt-8 p-6 md:p-8 bg-canvas-elevated border border-hairline-light rounded-sm shadow-subtle hover:shadow-card transition-shadow duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-hairline-light gap-2">
               <div className="flex items-center gap-2">
                 <SystemStatusIndicator status="active" label="VFS_UNIFIED" size="sm" />
@@ -449,6 +451,7 @@ export const ProblemSolution: React.FC = () => {
               />
             </div>
           </div>
+        </ScrollReveal>
 
           {/* Section Footnote */}
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-ink-tertiary">

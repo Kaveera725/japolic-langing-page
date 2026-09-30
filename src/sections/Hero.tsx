@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
 import { TechnicalDiagram } from '../components/TechnicalDiagram';
+import { ScrollReveal } from '../components/ScrollReveal';
 import { ArrowRight, BookOpen, Copy, Check } from 'lucide-react';
 
 const HERO_TAGS = ['FILE SYSTEM', 'SHARED STORAGE', 'S3 COMPATIBLE'] as const;
@@ -82,24 +83,24 @@ export const Hero: React.FC = () => {
         {/* CTA Cluster */}
         <div className="flex flex-wrap items-center gap-3.5 mb-10">
           <a
-            href="#access"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light active:bg-olive-dim transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+            href="#capabilities"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
           >
-            Explore Japolic
-            <ArrowRight size={15} strokeWidth={2} />
+            <span>Explore Japolic</span>
+            <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
           </a>
           <a
             href="#docs"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+            className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
           >
-            <BookOpen size={14} strokeWidth={1.8} />
-            Read the docs
+            <BookOpen size={14} strokeWidth={1.8} className="transition-transform duration-150 group-hover:-translate-y-0.5" />
+            <span>Read the docs</span>
           </a>
         </div>
 
         {/* CLI Quick-Mount Snippet */}
         <div className="max-w-lg mb-14 md:mb-20">
-          <div className="flex items-center justify-between px-3.5 py-2 bg-[#1A1815] border border-hairline-dark rounded-xs font-mono text-xs group">
+          <div className="flex items-center justify-between px-3.5 py-2 bg-[#1A1815] border border-hairline-dark rounded-xs font-mono text-xs group hover:border-[#38342E] transition-colors">
             <div className="flex items-center gap-2 overflow-x-auto py-0.5">
               <span className="text-olive-light select-none shrink-0 font-semibold">$</span>
               <code className="text-ink-inverse-sub group-hover:text-ink-inverse transition-colors whitespace-nowrap">
@@ -108,7 +109,7 @@ export const Hero: React.FC = () => {
             </div>
             <button
               onClick={handleCopy}
-              className="ml-3 shrink-0 p-1.5 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              className="ml-3 shrink-0 p-1.5 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
               aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
             >
               {copied ? (
@@ -126,7 +127,9 @@ export const Hero: React.FC = () => {
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             ARCHITECTURE DIAGRAM
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-        <TechnicalDiagram />
+        <ScrollReveal delayMs={100}>
+          <TechnicalDiagram />
+        </ScrollReveal>
       </Container>
     </section>
   );

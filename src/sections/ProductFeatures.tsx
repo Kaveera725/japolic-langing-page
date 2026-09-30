@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import { ScrollReveal } from '../components/ScrollReveal';
 import { SystemStatusIndicator, TechnicalLabel } from '../components/visuals';
 
 /* ═══════════════════════════════════════════════════════════
@@ -82,20 +83,22 @@ export const ProductFeatures: React.FC = () => {
       <div id="capabilities" className="scroll-mt-24" />
       <Container>
         {/* ── Section Header ── */}
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <SectionLabel label="PRODUCT" variant="olive" dot className="mb-5" />
-          <h2
-            id="cap-heading"
-            className="font-display text-[1.75rem] sm:text-[2.2rem] md:text-[2.8rem] font-medium leading-[1.1] tracking-tight text-ink-primary mb-5"
-          >
-            One data layer across your infrastructure.
-          </h2>
-          <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-secondary leading-[1.65]">
-            Japolic sits between your compute and your storage — a single coherent
-            file system that every node can mount, with local-speed caching and
-            commodity-priced persistence.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="max-w-3xl mb-12 md:mb-16">
+            <SectionLabel label="PRODUCT" variant="olive" dot className="mb-5" />
+            <h2
+              id="cap-heading"
+              className="font-display text-[1.75rem] sm:text-[2.2rem] md:text-[2.8rem] font-medium leading-[1.1] tracking-tight text-ink-primary mb-5"
+            >
+              One data layer across your infrastructure.
+            </h2>
+            <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-secondary leading-[1.65]">
+              Japolic sits between your compute and your storage — a single coherent
+              file system that every node can mount, with local-speed caching and
+              commodity-priced persistence.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* ── Interactive Layout ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">

@@ -84,11 +84,17 @@ export const ConnectionLine: React.FC<ConnectionLineProps> = ({
           stroke={strokeColor}
           strokeWidth="1.2"
           strokeDasharray={
-            variant === 'dashed' ? '4 3' : variant === 'dotted' ? '2 3' : undefined
+            active && flowDirection !== 'none'
+              ? '6 4'
+              : variant === 'dashed'
+              ? '4 3'
+              : variant === 'dotted'
+              ? '2 3'
+              : undefined
           }
           className={
             active && flowDirection !== 'none'
-              ? 'transition-all duration-300'
+              ? 'animate-flow-dash transition-all duration-300'
               : ''
           }
           markerEnd={markerEnd === 'arrow' ? `url(#arrow-end-${theme}-${active ? 'act' : 'inact'})` : undefined}

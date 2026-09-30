@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
 import { SectionLabel } from '../components/SectionLabel';
+import { ScrollReveal } from '../components/ScrollReveal';
 import {
   ServerNode,
   StorageNode,
@@ -103,205 +104,209 @@ export const UseCases: React.FC = () => {
         </div>
 
         {/* ── Editorial Module Grid (Rhythmic 2-Column Ledger) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-xs overflow-hidden shadow-subtle">
-          {USE_CASES.map((uc, index) => {
-            const isHovered = activeTab === index;
-            return (
-              <article
-                key={uc.num}
-                onMouseEnter={() => setActiveTab(index)}
-                onMouseLeave={() => setActiveTab(null)}
-                className={`relative bg-canvas-elevated p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
-                  isHovered ? 'bg-[#FAF8F2]' : ''
-                }`}
-              >
-                {/* ── Module Top Bar: Number + Audience Badge ── */}
-                <div>
-                  <div className="flex items-center justify-between border-b border-hairline-light pb-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-xl sm:text-2xl font-semibold tracking-tight text-olive">
-                        {uc.num}
-                      </span>
-                      <div className="h-3 w-px bg-hairline-strong" />
-                      <span className="font-mono text-xs uppercase tracking-wider text-ink-tertiary font-medium">
-                        {uc.audience}
-                      </span>
+        <ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-xs overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-300">
+            {USE_CASES.map((uc, index) => {
+              const isHovered = activeTab === index;
+              return (
+                <article
+                  key={uc.num}
+                  onMouseEnter={() => setActiveTab(index)}
+                  onMouseLeave={() => setActiveTab(null)}
+                  className={`relative bg-canvas-elevated p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
+                    isHovered ? 'bg-[#FAF8F2]' : ''
+                  }`}
+                >
+                  {/* ── Module Top Bar: Number + Audience Badge ── */}
+                  <div>
+                    <div className="flex items-center justify-between border-b border-hairline-light pb-4 mb-6">
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-xl sm:text-2xl font-semibold tracking-tight text-olive group-hover:text-olive-light transition-colors">
+                          {uc.num}
+                        </span>
+                        <div className="h-3 w-px bg-hairline-strong" />
+                        <span className="font-mono text-xs uppercase tracking-wider text-ink-tertiary font-medium">
+                          {uc.audience}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-secondary group-hover:border-olive/30 transition-colors">
+                        {index === 0 && <Cpu size={12} className="text-olive" />}
+                        {index === 1 && <Layers size={12} className="text-olive" />}
+                        {index === 2 && <Zap size={12} className="text-olive" />}
+                        {index === 3 && <Server size={12} className="text-olive" />}
+                        <span>{uc.audienceCategory}</span>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-secondary">
-                      {index === 0 && <Cpu size={12} className="text-olive" />}
-                      {index === 1 && <Layers size={12} className="text-olive" />}
-                      {index === 2 && <Zap size={12} className="text-olive" />}
-                      {index === 3 && <Server size={12} className="text-olive" />}
-                      <span>{uc.audienceCategory}</span>
-                    </div>
+                    {/* ── Title & Explanation ── */}
+                    <h3 className="font-display text-xl sm:text-2xl font-medium text-ink-primary tracking-tight mb-3">
+                      {uc.title}
+                    </h3>
+
+                    <p className="font-sans text-sm sm:text-base text-ink-secondary leading-relaxed mb-8">
+                      {uc.explanation}
+                    </p>
                   </div>
 
-                  {/* ── Title & Explanation ── */}
-                  <h3 className="font-display text-xl sm:text-2xl font-medium text-ink-primary tracking-tight mb-3">
-                    {uc.title}
-                  </h3>
-
-                  <p className="font-sans text-sm sm:text-base text-ink-secondary leading-relaxed mb-8">
-                    {uc.explanation}
-                  </p>
-                </div>
-
-                {/* ── Technical Visual Cues (Distinct Visual Rhythm for each module) ── */}
-                <div className="mt-auto pt-4">
-                  {/* CUE 1: AI Workloads - FilesystemTree & Streaming DataPath */}
-                  {uc.cueType === 'pipeline' && (
-                    <div className="space-y-2">
-                      <FilesystemTree
-                        items={[
-                          {
-                            id: 'mnt',
-                            name: '/mnt/shared',
-                            type: 'vfs-mount',
-                            children: [
-                              {
-                                id: 'train-set',
-                                name: 'imagenet-21k-shuffled.parquet',
-                                type: 'file',
-                                size: '1.42 TB',
-                                cached: true,
-                                inode: '09120',
-                              },
-                              {
-                                id: 'weights',
-                                name: 'checkpoints/model-step-80k.pt',
-                                type: 'file',
-                                size: '128 GB',
-                                cached: true,
-                                inode: '09121',
-                              },
-                            ],
-                          },
-                        ]}
-                      />
-                      <DataPath
-                        label="PyTorch DataLoader"
-                        sublabel="Direct DMA"
-                        protocol="POSIX VFS"
-                        throughput="4.8 GB/s"
-                      />
-                    </div>
-                  )}
-
-                  {/* CUE 2: Data Pipelines - Multi-Worker Server Nodes & Connection */}
-                  {uc.cueType === 'topology' && (
-                    <div className="space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <ServerNode
-                          name="worker-01"
-                          type="worker"
-                          status="active"
-                          hardware="64 vCPU · ETL Worker"
-                          mountPoint="/mnt/shared"
-                          throughput="1.8 GB/s"
-                          compact={true}
+                  {/* ── Technical Visual Cues (Distinct Visual Rhythm for each module) ── */}
+                  <div className="mt-auto pt-4">
+                    {/* CUE 1: AI Workloads - FilesystemTree & Streaming DataPath */}
+                    {uc.cueType === 'pipeline' && (
+                      <div className="space-y-2">
+                        <FilesystemTree
+                          items={[
+                            {
+                              id: 'mnt',
+                              name: '/mnt/shared',
+                              type: 'vfs-mount',
+                              children: [
+                                {
+                                  id: 'train-set',
+                                  name: 'imagenet-21k-shuffled.parquet',
+                                  type: 'file',
+                                  size: '1.42 TB',
+                                  cached: true,
+                                  inode: '09120',
+                                },
+                                {
+                                  id: 'weights',
+                                  name: 'checkpoints/model-step-80k.pt',
+                                  type: 'file',
+                                  size: '128 GB',
+                                  cached: true,
+                                  inode: '09121',
+                                },
+                              ],
+                            },
+                          ]}
                         />
-                        <ServerNode
-                          name="worker-64"
-                          type="worker"
-                          status="active"
-                          hardware="64 vCPU · Spark Node"
-                          mountPoint="/mnt/shared"
-                          throughput="1.8 GB/s"
-                          compact={true}
+                        <DataPath
+                          label="PyTorch DataLoader"
+                          sublabel="Direct DMA"
+                          protocol="POSIX VFS"
+                          throughput="4.8 GB/s"
                         />
                       </div>
-                      <div className="p-2.5 bg-canvas-subtle border border-hairline-light rounded-xs flex items-center justify-between font-mono text-[10px]">
-                        <div className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
-                          <span className="font-semibold text-olive">ZERO RSYNC ORCHESTRATION</span>
+                    )}
+
+                    {/* CUE 2: Data Pipelines - Multi-Worker Server Nodes & Connection */}
+                    {uc.cueType === 'topology' && (
+                      <div className="space-y-2">
+                        <div className="grid grid-cols-2 gap-2">
+                          <ServerNode
+                            name="worker-01"
+                            type="worker"
+                            status="active"
+                            hardware="64 vCPU · ETL Worker"
+                            mountPoint="/mnt/shared"
+                            throughput="1.8 GB/s"
+                            compact={true}
+                          />
+                          <ServerNode
+                            name="worker-64"
+                            type="worker"
+                            status="active"
+                            hardware="64 vCPU · Spark Node"
+                            mountPoint="/mnt/shared"
+                            throughput="1.8 GB/s"
+                            compact={true}
+                          />
                         </div>
-                        <span className="text-ink-secondary">64 NODES ON ONE MOUNT</span>
+                        <div className="p-2.5 bg-canvas-subtle border border-hairline-light rounded-xs flex items-center justify-between font-mono text-[10px]">
+                          <div className="flex items-center gap-2">
+                            <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse" />
+                            <span className="font-semibold text-olive">ZERO RSYNC ORCHESTRATION</span>
+                          </div>
+                          <span className="text-ink-secondary">64 NODES ON ONE MOUNT</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* CUE 3: High-Performance - Dedicated StorageNode with Latency Gauge */}
-                  {uc.cueType === 'telemetry' && (
-                    <div className="space-y-2">
-                      <StorageNode
-                        name="Node-Local NVMe VFS Cache"
-                        tier="nvme"
-                        latency="140 µs"
-                        hitRatio="99.4%"
-                        capacity="3.84 TB"
-                        usedPercent={48}
-                        highlight={true}
-                      />
-                      <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-tertiary">
-                        <span>VS CLOUD NFS (8,400 µs)</span>
-                        <span className="font-semibold text-olive">60× LATENCY ADVANTAGE</span>
+                    {/* CUE 3: High-Performance - Dedicated StorageNode with Latency Gauge */}
+                    {uc.cueType === 'telemetry' && (
+                      <div className="space-y-2">
+                        <StorageNode
+                          name="Node-Local NVMe VFS Cache"
+                          tier="nvme"
+                          latency="140 µs"
+                          hitRatio="99.4%"
+                          capacity="3.84 TB"
+                          usedPercent={48}
+                          highlight={true}
+                        />
+                        <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-tertiary">
+                          <span>VS CLOUD NFS (8,400 µs)</span>
+                          <span className="font-semibold text-olive">60× LATENCY ADVANTAGE</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* CUE 4: Infrastructure Teams - S3 Persistence Layer */}
-                  {uc.cueType === 'matrix' && (
-                    <div className="space-y-2">
-                      <S3StorageLayer
-                        buckets={[
-                          {
-                            uri: 's3://production-lake-us-east',
-                            provider: 'aws-s3',
-                            totalSize: '48.2 TB',
-                            syncState: 'synced',
-                          },
-                          {
-                            uri: 'r2://inference-edge-cache',
-                            provider: 'r2',
-                            totalSize: '12.4 TB',
-                            syncState: 'synced',
-                          },
-                        ]}
-                      />
-                      <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-muted">
-                        <TechnicalLabel variant="bracket" size="xs">DECOUPLED_TIER</TechnicalLabel>
-                        <span className="text-ink-primary font-medium">ZERO STORAGE VENDOR LOCK-IN</span>
+                    {/* CUE 4: Infrastructure Teams - S3 Persistence Layer */}
+                    {uc.cueType === 'matrix' && (
+                      <div className="space-y-2">
+                        <S3StorageLayer
+                          buckets={[
+                            {
+                              uri: 's3://production-lake-us-east',
+                              provider: 'aws-s3',
+                              totalSize: '48.2 TB',
+                              syncState: 'synced',
+                            },
+                            {
+                              uri: 'r2://inference-edge-cache',
+                              provider: 'r2',
+                              totalSize: '12.4 TB',
+                              syncState: 'synced',
+                            },
+                          ]}
+                        />
+                        <div className="flex items-center justify-between px-3 py-1.5 bg-canvas-subtle border border-hairline-light rounded-xs font-mono text-[10px] text-ink-muted">
+                          <TechnicalLabel variant="bracket" size="xs">DECOUPLED_TIER</TechnicalLabel>
+                          <span className="text-ink-primary font-medium">ZERO STORAGE VENDOR LOCK-IN</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </ScrollReveal>
 
         {/* ── Section Terminal CTA ── */}
-        <div className="mt-14 md:mt-20 pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-8 sm:p-10 border border-hairline-light rounded-xs shadow-subtle">
-          <div className="max-w-xl text-center md:text-left">
-            <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">
-              EVALUATE JAPOLIC IN YOUR ENVIRONMENT
-            </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-ink-primary mt-1 mb-2">
-              Ready to test on your own compute clusters?
-            </h3>
-            <p className="font-sans text-sm text-ink-secondary">
-              Deploy Japolic with a single binary or container. Mount your existing object buckets and evaluate throughput in minutes.
-            </p>
-          </div>
+        <ScrollReveal delayMs={100}>
+          <div className="mt-14 md:mt-20 pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-8 sm:p-10 border border-hairline-light rounded-xs shadow-subtle hover:shadow-card transition-shadow duration-300">
+            <div className="max-w-xl text-center md:text-left">
+              <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">
+                EVALUATE JAPOLIC IN YOUR ENVIRONMENT
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-ink-primary mt-1 mb-2">
+                Ready to test on your own compute clusters?
+              </h3>
+              <p className="font-sans text-sm text-ink-secondary">
+                Deploy Japolic with a single binary or container. Mount your existing object buckets and evaluate throughput in minutes.
+              </p>
+            </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-            <a
-              href="#how-it-works"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light active:bg-olive-dim transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2"
-            >
-              <span>Explore how Japolic works</span>
-              <ArrowRight size={16} strokeWidth={2} />
-            </a>
-            <a
-              href="#docs"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xs bg-canvas-subtle border border-hairline-strong text-ink-primary font-sans text-sm font-medium hover:bg-canvas-sunken/40 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
-            >
-              <span>Read technical specs</span>
-              <ChevronRight size={15} />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              <a
+                href="#how-it-works"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2"
+              >
+                <span>Explore how Japolic works</span>
+                <ArrowRight size={16} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href="#docs"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xs bg-canvas-subtle border border-hairline-strong text-ink-primary font-sans text-sm font-medium hover:bg-canvas-sunken/40 transition-colors interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              >
+                <span>Read technical specs</span>
+                <ChevronRight size={15} />
+              </a>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-sans font-medium transition-all duration-150 ease-out border rounded-sm focus:outline-none focus:ring-1 focus:ring-olive focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none select-none tracking-tight';
+    'group inline-flex items-center justify-center font-sans font-medium transition-all duration-150 ease-out border rounded-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none tracking-tight interactive-button';
 
   const sizeStyles = {
     sm: 'text-xs px-3 py-1.5 gap-1.5',
@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-olive border-[#2F4233] text-white hover:bg-olive-light shadow-subtle active:bg-olive-dim',
+      'bg-olive border-[#2F4233] text-white hover:bg-olive-light shadow-subtle hover:shadow-card active:bg-olive-dim',
     secondary:
       'bg-transparent border-hairline-strong text-ink-primary hover:bg-canvas-subtle hover:border-ink-secondary',
     inverse:
@@ -42,9 +42,17 @@ export const Button: React.FC<ButtonProps> = ({
 
   const content = (
     <>
-      {icon && iconPosition === 'left' && <span className="inline-flex shrink-0">{icon}</span>}
+      {icon && iconPosition === 'left' && (
+        <span className="inline-flex shrink-0 transition-transform duration-150 group-hover:-translate-x-0.5">
+          {icon}
+        </span>
+      )}
       <span>{children}</span>
-      {icon && iconPosition === 'right' && <span className="inline-flex shrink-0">{icon}</span>}
+      {icon && iconPosition === 'right' && (
+        <span className="inline-flex shrink-0 transition-transform duration-150 group-hover:translate-x-0.5">
+          {icon}
+        </span>
+      )}
     </>
   );
 

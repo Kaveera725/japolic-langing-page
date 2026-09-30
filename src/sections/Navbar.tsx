@@ -11,23 +11,41 @@ interface NavLink {
 
 const NAV_ITEMS: NavLink[] = [
   { label: 'Product', href: '#capabilities' },
-  { label: 'How it Works', href: '#problem-solution' },
-  { label: 'Use Cases', href: '#workloads' },
+  { label: 'How it Works', href: '#how-it-works' },
+  { label: 'Use Cases', href: '#use-cases' },
   { label: 'Docs', href: '#docs' },
 ];
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
 
-  // Monitor scroll for subtle shadow/border enhancement without layout shift
+  // Monitor scroll for shadow/border and active section tracking without layout shift
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 16);
+
+      const sectionIds = ['capabilities', 'how-it-works', 'use-cases', 'docs'];
+      const scrollPos = window.scrollY + 120;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(`#${id}`);
+          return;
+        }
+      }
+      if (window.scrollY < 200) {
+        setActiveSection('');
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -105,19 +123,37 @@ export const Navbar: React.FC = () => {
           {/* =================================================================
               CENTER / RIGHT: NAVIGATION LINKS
               ================================================================= */}
+          {/* =================================================================
+              CENTER / RIGHT: NAVIGATION LINKS
+              ================================================================= */}
           <nav
             aria-label="Primary navigation"
-            className="hidden md:flex items-center gap-8 text-sm font-sans"
+            className="hidden md:flex items-center gap-7 text-sm font-sans"
           >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="relative py-1 text-ink-secondary hover:text-ink-primary transition-colors tracking-tight font-normal hover:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive rounded-xs"
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`group relative py-1 tracking-tight font-medium text-xs transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive rounded-xs ${
+                    isActive
+                      ? 'text-ink-primary font-semibold'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {/* Restrained underline micro-indicator */}
+                  <span
+                    className={`absolute -bottom-1 left-0 w-full h-[1.5px] bg-olive transition-transform duration-150 origin-left ease-out ${
+                      isActive
+                        ? 'scale-x-100 opacity-100'
+                        : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-60'
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           {/* =================================================================
@@ -135,11 +171,14 @@ export const Navbar: React.FC = () => {
 
             {/* Primary Action Button */}
             <a
-              href="#access"
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xs bg-olive text-white font-sans text-xs font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light active:bg-olive-dim transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-1"
+              href="#get-started"
+              className="group inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xs bg-olive text-white font-sans text-xs font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-1"
             >
               <span>Get Started</span>
-              <ArrowUpRight size={13} className="opacity-80" />
+              <ArrowUpRight
+                size={13}
+                className="opacity-80 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
           </div>
 
@@ -148,8 +187,8 @@ export const Navbar: React.FC = () => {
               ================================================================= */}
           <div className="flex md:hidden items-center gap-2.5">
             <a
-              href="#access"
-              className="px-2.5 py-1 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233]"
+              href="#get-started"
+              className="px-2.5 py-1 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
             >
               Get Started
             </a>
@@ -161,9 +200,13 @@ export const Navbar: React.FC = () => {
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
-              className="p-1.5 rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              className="p-1.5 rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {mobileMenuOpen ? (
+                <X size={18} className="transition-transform duration-150 rotate-90" />
+              ) : (
+                <Menu size={18} className="transition-transform duration-150" />
+              )}
             </button>
           </div>
         </div>
@@ -179,13 +222,13 @@ export const Navbar: React.FC = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Menu"
-          className="md:hidden border-b border-hairline-strong bg-canvas-elevated animate-in fade-in slide-in-from-top-2 duration-150 shadow-terminal"
+          className="md:hidden border-b border-hairline-strong bg-canvas-elevated shadow-terminal transition-all duration-200 ease-out"
         >
           <Container className="py-5">
             {/* Status bar in mobile menu */}
             <div className="flex items-center justify-between pb-3 mb-3 border-b border-hairline-light font-mono text-[11px] text-ink-tertiary">
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-olive"></span>
+                <span className="h-1.5 w-1.5 rounded-full bg-olive animate-pulse"></span>
                 <span>CLUSTER STATUS: OK</span>
               </span>
               <span>KERNEL: POSIX-VFS</span>
@@ -193,25 +236,35 @@ export const Navbar: React.FC = () => {
 
             {/* Menu Links */}
             <nav className="flex flex-col space-y-1 font-sans">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between py-2.5 px-2 rounded-xs text-sm font-medium text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight size={14} className="text-ink-tertiary" />
-                </a>
-              ))}
+              {NAV_ITEMS.map((item) => {
+                const isActive = activeSection === item.href;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center justify-between py-2.5 px-2 rounded-xs text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive ${
+                      isActive
+                        ? 'bg-olive-wash text-olive font-semibold'
+                        : 'text-ink-primary hover:bg-canvas-subtle'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <ArrowUpRight
+                      size={14}
+                      className={isActive ? 'text-olive' : 'text-ink-tertiary'}
+                    />
+                  </a>
+                );
+              })}
             </nav>
 
             {/* Mobile Footer CTA */}
             <div className="pt-4 mt-3 border-t border-hairline-light flex flex-col gap-2">
               <a
-                href="#access"
+                href="#get-started"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
               >
                 <span>Get Started — Request Early Access</span>
                 <ArrowUpRight size={14} />
