@@ -112,6 +112,7 @@ export const Hero: React.FC = () => {
                 </code>
               </div>
               <button
+                type="button"
                 onClick={handleCopy}
                 className="ml-2 shrink-0 p-2 min-h-[36px] min-w-[36px] flex items-center justify-center text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
                 aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
@@ -122,6 +123,9 @@ export const Hero: React.FC = () => {
                   <Copy size={14} />
                 )}
               </button>
+            </div>
+            <div aria-live="polite" className="sr-only">
+              {copied ? 'Mount command copied to clipboard' : ''}
             </div>
             <p className="mt-1 font-mono text-[10px] text-ink-inverse-mute tracking-wide pl-1">
               Mount any S3 bucket as a local filesystem in one command.

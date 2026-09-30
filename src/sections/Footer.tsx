@@ -115,6 +115,9 @@ export const Footer: React.FC = () => {
                     {copied ? <Check size={14} className="text-olive" /> : <Copy size={14} />}
                   </button>
                 </div>
+                <div aria-live="polite" className="sr-only">
+                  {copied ? 'Install command copied to clipboard' : ''}
+                </div>
               </div>
 
             <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-[11px] text-ink-inverse-mute">

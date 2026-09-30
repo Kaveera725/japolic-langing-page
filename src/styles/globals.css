@@ -147,4 +147,9 @@
     scroll-behavior: auto !important;
     transform: none !important;
   }
+
+  svg animate,
+  svg animateTransform {
+    display: none !important;
+  }
 }

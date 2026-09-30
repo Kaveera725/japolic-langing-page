@@ -123,7 +123,7 @@ export const ProductFeatures: React.FC = () => {
                   }}
                   className={`
                     relative px-5 py-5 border-l-[3px] transition-all duration-300 cursor-default outline-none
-                    focus-visible:ring-1 focus-visible:ring-olive focus-visible:ring-inset
+                    focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-inset
                     ${active === idx
                       ? 'border-l-olive bg-olive-wash/40'
                       : active !== null

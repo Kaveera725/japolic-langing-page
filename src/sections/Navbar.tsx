@@ -61,10 +61,16 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll and shift focus when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      // Shift focus to the first interactive item in the drawer
+      const timer = setTimeout(() => {
+        const firstInteractive = mobileNavRef.current?.querySelector('a, button') as HTMLElement | null;
+        firstInteractive?.focus();
+      }, 50);
+      return () => clearTimeout(timer);
     } else {
       document.body.style.overflow = '';
     }
