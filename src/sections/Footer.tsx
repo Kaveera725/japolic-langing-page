@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
                 <SystemStatusIndicator
                   status="nominal"
                   label="ALL SYSTEMS OPERATIONAL"
-                  sublabel="VFS ENGINE v0.9.4"
+                  sublabel="STABLE"
                   theme="dark"
                   size="sm"
                 />
@@ -86,7 +86,7 @@ export const Footer: React.FC = () => {
               </h2>
 
               <p className="font-sans text-base sm:text-lg text-ink-inverse-sub leading-relaxed mb-8 max-w-2xl">
-                Shared storage without the network bottleneck. Deploy Japolic alongside your compute nodes and stream multi-terabyte datasets directly from object persistence with local NVMe response times.
+                A shared file system that keeps your data close to your compute — backed by commodity object storage, no infrastructure overhaul required.
               </p>
 
               {/* Action Bar: Primary CTA + Terminal Quickstart */}
@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
                   JAPOLIC
                 </a>
                 <p className="font-sans text-sm text-ink-inverse-sub leading-relaxed max-w-sm mb-6">
-                  High-performance shared storage infrastructure delivering local-disk access speeds to distributed compute, seamlessly backed by object persistence.
+                  Shared file system infrastructure for distributed compute — backed by S3-compatible object storage.
                 </p>
               </div>
 

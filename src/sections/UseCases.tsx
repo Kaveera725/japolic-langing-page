@@ -50,7 +50,7 @@ const USE_CASES: UseCaseData[] = [
     audience: 'Data-Intensive Applications',
     audienceCategory: 'High-Performance Applications',
     title: 'High-Performance Applications',
-    explanation: 'Hot data paths execute against node-local NVMe caches, delivering microsecond local-disk access latencies to shared datasets.',
+    explanation: 'Hot data paths execute against node-local NVMe caches, so shared datasets load at speeds close to reading from a local drive.',
     keyMetric: { label: 'READ PATH', value: 'Node-Local NVMe' },
     cueType: 'telemetry',
   },
@@ -85,21 +85,14 @@ export const UseCases: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-hairline-strong pb-8 mb-12">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
-              <SectionLabel label="APPLICATION DOMAINS" variant="olive" dot />
-              <span className="font-mono text-[11px] text-ink-muted tracking-wider uppercase">
-                Architecture Spec 04
-              </span>
+              <SectionLabel label="WHO IT'S FOR" variant="olive" dot />
             </div>
             <h2
               id="use-cases-heading"
               className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium tracking-tight text-ink-primary leading-[1.12]"
             >
-              Engineered for systems where storage is the critical path.
+              Built for teams that can't afford slow data.
             </h2>
-          </div>
-          <div className="mt-6 md:mt-0 font-mono text-xs text-ink-tertiary text-right hidden sm:block">
-            <div>AUDIENCE / VALUE COUPLING</div>
-            <div className="text-olive font-semibold mt-1">4 VERIFIED PROFILES</div>
           </div>
         </div>
 
@@ -279,13 +272,13 @@ export const UseCases: React.FC = () => {
           <div className="mt-14 md:mt-20 pt-8 sm:pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-6 sm:p-10 border border-hairline-light rounded-xs shadow-subtle hover:shadow-card transition-shadow duration-300">
             <div className="max-w-xl text-center md:text-left">
               <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">
-                EVALUATE JAPOLIC IN YOUR ENVIRONMENT
+                GET STARTED
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-ink-primary mt-1 mb-2">
-                Ready to test on your own compute clusters?
+                Ready to deploy Japolic?
               </h3>
               <p className="font-sans text-sm text-ink-secondary">
-                Deploy Japolic with a single binary or container. Mount your existing object buckets and evaluate throughput in minutes.
+                Mount your existing object buckets and evaluate throughput in minutes — no infrastructure changes required.
               </p>
             </div>
 

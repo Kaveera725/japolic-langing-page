@@ -11,7 +11,7 @@ import { SystemStatusIndicator, TechnicalLabel } from '../components/visuals';
 const CAPABILITIES = [
   {
     num: '01',
-    tag: 'MULTI-NODE NAMESPACE',
+    tag: 'ALL NODES, ONE MOUNT',
     title: 'Shared access across nodes',
     body: 'Every compute node mounts the same shared directory simultaneously. Read and write concurrently across your entire cluster — no staging pipelines, no manual data synchronization.',
     detail: 'POSIX-compliant · Concurrent R/W',
@@ -20,12 +20,12 @@ const CAPABILITIES = [
     num: '02',
     tag: 'NVMe / RAM CACHE',
     title: 'Local-speed data access',
-    body: 'Hot data blocks are served from node-local NVMe and memory cache, bypassing network file system roundtrips. Read performance approaches physical disk latency.',
+    body: 'Hot data blocks are served from node-local NVMe and memory cache, bypassing network file system roundtrips. Read latency is close to reading directly from local disk.',
     detail: 'Sub-ms reads · Direct bus path',
   },
   {
     num: '03',
-    tag: 'OBJECT PROTOCOL BRIDGE',
+    tag: 'S3 NATIVE',
     title: 'Native S3 compatibility',
     body: 'Mount existing S3 buckets or S3-compatible storage directly as a POSIX filesystem. Read objects as files, write files as objects — zero migration, zero proprietary formats.',
     detail: 'AWS S3 · R2 · MinIO · Ceph',
@@ -85,7 +85,7 @@ export const ProductFeatures: React.FC = () => {
         {/* ── Section Header ── */}
         <ScrollReveal>
           <div className="max-w-3xl mb-12 md:mb-16">
-            <SectionLabel label="PRODUCT" variant="olive" dot className="mb-5" />
+            <SectionLabel label="THE ARCHITECTURE" variant="olive" dot className="mb-5" />
             <h2
               id="cap-heading"
               className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-[1.12] tracking-tight text-ink-primary mb-5"
@@ -93,9 +93,10 @@ export const ProductFeatures: React.FC = () => {
               One data layer across your infrastructure.
             </h2>
             <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-secondary leading-[1.65]">
-              Japolic sits between your compute and your storage — a single coherent
-              file system that every node can mount, with local-speed caching and
-              commodity-priced persistence.
+              Under the hood, Japolic is a virtual file system layer. It aggregates
+              local NVMe cache, network-attached compute nodes, and cloud object
+              buckets into a single mountable directory — so every application reads
+              and writes files the same way it always has.
             </p>
           </div>
         </ScrollReveal>
@@ -472,7 +473,7 @@ export const ProductFeatures: React.FC = () => {
                     <span>{CAPABILITIES[active].detail}</span>
                   </span>
                 ) : (
-                  <span className="text-ink-muted">Hover a capability to highlight the relevant architecture layer</span>
+                  <span className="text-ink-muted">Hover a capability to explore the diagram</span>
                 )}
               </div>
             </div>

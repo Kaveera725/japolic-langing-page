@@ -4,7 +4,7 @@ import { TechnicalDiagram } from '../components/TechnicalDiagram';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ArrowRight, BookOpen, Copy, Check } from 'lucide-react';
 
-const HERO_TAGS = ['FILE SYSTEM', 'SHARED STORAGE', 'S3 COMPATIBLE'] as const;
+const HERO_TAGS = ['SHARED FILE SYSTEM', 'S3 COMPATIBLE', 'AI & ML WORKLOADS'] as const;
 
 const MOUNT_COMMAND = 'japolic mount --target=s3://your-bucket /mnt/shared';
 
@@ -74,10 +74,10 @@ export const Hero: React.FC = () => {
 
         {/* Supporting Copy */}
         <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-inverse-sub leading-[1.6] max-w-[640px] mb-8">
-          Japolic connects distributed compute to unified shared storage
-          over standard POSIX file interfaces — near-local NVMe speeds, native
-          S3 compatibility, and automatic cold-data tiering without rewriting
-          your application.
+          Japolic is a shared file system for distributed compute. AI teams,
+          platform engineers, and data-intensive applications get direct access
+          to S3-backed storage — at speeds close to a local disk — without
+          changing how their code reads files.
         </p>
 
         {/* Action Row: CTAs & Quick-Mount Snippet */}
@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
               href="#capabilities"
               className="group min-h-[46px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
             >
-              <span>Explore Japolic</span>
+              <span>See how it works</span>
               <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
             </a>
             <a

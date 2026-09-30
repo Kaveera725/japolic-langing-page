@@ -26,19 +26,19 @@ const FRICTION_POINTS = [
     num: '02',
     title: 'STORAGE COST',
     annotation: 'EXPONENTIAL $/TB',
-    body: 'Enterprise SAN and NAS appliances carry exponential per-terabyte pricing. Maintaining petabyte-scale datasets on provisioned block storage becomes prohibitively expensive.',
+    body: 'Enterprise SAN and NAS appliances carry high per-terabyte pricing. Maintaining petabyte-scale datasets on provisioned block storage becomes expensive at scale.',
   },
   {
     num: '03',
     title: 'ACCESS LATENCY',
     annotation: 'NFS BOTTLENECK',
-    body: 'Network file systems introduce lock contention and metadata serialization bottlenecks. Random-access I/O degrades predictably under concurrent workloads.',
+    body: 'Network file systems introduce contention under concurrent access. Random-access I/O degrades predictably as the number of parallel readers and writers grows.',
   },
   {
     num: '04',
     title: 'DATASET GROWTH',
     annotation: 'CAPACITY BOUNDARY',
-    body: 'Training sets and analytics corpuses routinely exceed single-node storage boundaries. Data staging and pre-download pipelines waste GPU compute cycles waiting on I/O.',
+    body: 'Training sets and analytics datasets routinely exceed single-node storage boundaries. Data staging and pre-download pipelines waste GPU compute cycles waiting on I/O.',
   },
   {
     num: '05',
@@ -311,7 +311,7 @@ export const ProblemSolution: React.FC = () => {
           <div className="flex items-center gap-2.5 px-4 py-1.5 border border-olive/25 bg-olive-wash/50 rounded-xs">
             <span className="h-2 w-2 rounded-full bg-olive" />
             <span className="font-mono text-[11px] font-semibold text-olive tracking-wider">
-              THE RESOLUTION
+              THE SOLUTION
             </span>
           </div>
           <div className="flex-1 h-px bg-hairline-strong" />
@@ -338,9 +338,9 @@ export const ProblemSolution: React.FC = () => {
               One file system across every node.
             </h2>
             <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-secondary leading-[1.65] max-w-2xl">
-              Japolic collapses the gap between local disk performance and shared
-              storage scale. Every server mounts the same namespace. Hot data stays
-              fast. Cold data stays cheap. Zero application changes required.
+              Every server mounts the same directory. Hot data is served quickly.
+              Cold data moves to cheap object storage automatically. No migration
+              scripts, no manual replication, no changes to your application.
             </p>
           </div>
 
