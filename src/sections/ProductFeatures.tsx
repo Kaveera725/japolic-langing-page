@@ -77,10 +77,10 @@ export const ProductFeatures: React.FC = () => {
   return (
     <section
       id="product"
-      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-16"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-[72px]"
       aria-labelledby="cap-heading"
     >
-      <div id="capabilities" className="scroll-mt-24" />
+      <div id="capabilities" className="scroll-mt-[72px]" />
       <Container>
         {/* ── Section Header ── */}
         <ScrollReveal>
@@ -174,7 +174,7 @@ export const ProductFeatures: React.FC = () => {
 
           {/* RIGHT: Interactive Architecture Diagram */}
           <div className="lg:col-span-8 order-1 lg:order-2">
-            <div className="sticky top-24 rounded-md border border-hairline-light bg-canvas-elevated shadow-card overflow-hidden">
+            <div className="sticky top-24 rounded-sm border border-hairline-light bg-canvas-elevated shadow-card overflow-hidden">
               {/* Title bar */}
               <div className="flex items-center justify-between px-4 py-2 border-b border-hairline-light bg-canvas-subtle/50 font-mono text-[10px] tracking-wider text-ink-tertiary">
                 <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ export const ProductFeatures: React.FC = () => {
               <div className="sm:hidden p-3.5 space-y-2 bg-canvas-base border-b border-hairline-light">
                 {/* Layer 0: Workloads */}
                 <div
-                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                  className={`p-2.5 rounded-xs border transition-all duration-200 ${
                     active === null || active === 0
                       ? 'bg-canvas-elevated border-hairline-strong'
                       : 'bg-canvas-subtle/50 border-hairline-light opacity-60'
@@ -214,7 +214,7 @@ export const ProductFeatures: React.FC = () => {
 
                 {/* Layer 1: Compute Nodes & Japolic VFS */}
                 <div
-                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                  className={`p-2.5 rounded-xs border transition-all duration-200 ${
                     active === 0 || active === 1 || active === 3
                       ? 'bg-olive-wash/60 border-olive/50 shadow-subtle'
                       : 'bg-canvas-elevated border-hairline-light opacity-75'
@@ -238,7 +238,7 @@ export const ProductFeatures: React.FC = () => {
 
                 {/* Layer 2: Persistence */}
                 <div
-                  className={`p-2.5 rounded-xs border transition-all duration-300 ${
+                  className={`p-2.5 rounded-xs border transition-all duration-200 ${
                     active === 2 || active === 3
                       ? 'bg-olive-wash/60 border-olive/50 shadow-subtle'
                       : 'bg-canvas-elevated border-hairline-light opacity-75'

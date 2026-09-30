@@ -17,13 +17,13 @@
   /* Typography / Text Colors (Light Contexts) */
   --color-text-primary:       #181715;
   --color-text-secondary:     #4D4842;
-  --color-text-tertiary:      #666159;
-  --color-text-muted:         #6E6961;
+  --color-text-tertiary:      #787268;
+  --color-text-muted:         #A49E93;
 
   /* Typography / Text Colors (Dark Contexts) */
   --color-text-inverse:       #F7F5F0;
-  --color-text-inverse-sub:   #C2BCB0;
-  --color-text-inverse-mute:  #8E887E;
+  --color-text-inverse-sub:   #B8B2A6;
+  --color-text-inverse-mute:  #706B62;
 
   /* Technical Accent Palette */
   --color-accent-olive:       #3F5744;

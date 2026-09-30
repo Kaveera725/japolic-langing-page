@@ -457,7 +457,7 @@ export const ProblemSolution: React.FC = () => {
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-ink-tertiary">
             <span className="tracking-wide">JAPOLIC FILE SYSTEM · POSIX-COMPATIBLE · S3-BACKED</span>
             <a
-              href="#capabilities"
+              href="#product"
               className="inline-flex items-center gap-1.5 text-olive hover:text-olive-light transition-colors font-medium tracking-wide"
             >
               Explore capabilities <ArrowRight size={12} />

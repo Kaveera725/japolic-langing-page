@@ -98,7 +98,7 @@ export const UseCases: React.FC = () => {
 
         {/* ── Editorial Module Grid (Rhythmic 2-Column Ledger) ── */}
         <ScrollReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-xs overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-sm overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-200">
             {USE_CASES.map((uc, index) => {
               const isHovered = activeTab === index;
               return (

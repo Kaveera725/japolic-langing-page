@@ -10,7 +10,7 @@ interface NavLink {
 }
 
 const NAV_ITEMS: NavLink[] = [
-  { label: 'Product', href: '#capabilities' },
+  { label: 'Product', href: '#product' },
   { label: 'How it Works', href: '#how-it-works' },
   { label: 'Use Cases', href: '#use-cases' },
   { label: 'Docs', href: '#docs' },
@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 16);
 
-      const sectionIds = ['capabilities', 'how-it-works', 'use-cases', 'docs'];
+      const sectionIds = ['how-it-works', 'product', 'use-cases', 'docs'];
       const scrollPos = window.scrollY + 120;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -189,7 +189,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden items-center gap-2">
             <a
               href="#get-started"
-              className="h-9 px-3 flex items-center justify-center rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
+              className="h-9 min-h-[38px] px-3 flex items-center justify-center rounded-xs bg-olive text-white font-sans text-xs font-medium border border-[#2F4233] interactive-button shadow-subtle"
             >
               Get Started
             </a>
@@ -201,7 +201,7 @@ export const Navbar: React.FC = () => {
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
-              className="h-9 w-9 flex items-center justify-center rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              className="h-9 w-9 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xs border border-hairline-strong bg-canvas-elevated text-ink-primary hover:bg-canvas-subtle transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
             >
               {mobileMenuOpen ? (
                 <X size={18} className="transition-transform duration-150 rotate-90" />

@@ -85,7 +85,7 @@ export const Hero: React.FC = () => {
           {/* Primary & Secondary CTA (full-width stacked on mobile for thumb reach) */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
             <a
-              href="#capabilities"
+              href="#how-it-works"
               className="group min-h-[46px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
             >
               <span>See how it works</span>

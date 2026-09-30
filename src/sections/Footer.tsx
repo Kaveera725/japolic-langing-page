@@ -9,8 +9,8 @@ import { ArrowRight, Check, Copy, ExternalLink, Terminal } from 'lucide-react';
    ═══════════════════════════════════════════════════════════ */
 
 const NAV_LINKS = [
-  { label: 'Product', href: '#capabilities' },
-  { label: 'How it Works', href: '#capabilities' },
+  { label: 'Product', href: '#product' },
+  { label: 'How it Works', href: '#how-it-works' },
   { label: 'Use Cases', href: '#use-cases' },
   { label: 'Docs', href: '#docs' },
 ];
@@ -64,6 +64,7 @@ export const Footer: React.FC = () => {
             PRE-FOOTER CONCLUSION CTA BLOCK
             ═══════════════════════════════════════════════════════ */}
         <ScrollReveal>
+          <div id="docs" className="scroll-mt-[72px]" />
           <div className="pt-16 sm:pt-20 lg:pt-24 pb-14 md:pb-20 border-b border-hairline-dark">
             <div className="max-w-3xl">
               {/* Technical system status badge */}
