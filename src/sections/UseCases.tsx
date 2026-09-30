@@ -71,7 +71,7 @@ export const UseCases: React.FC = () => {
   return (
     <section
       id="use-cases"
-      className="py-24 md:py-32 bg-canvas-base border-b border-hairline-light relative overflow-hidden"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light relative overflow-hidden"
       aria-labelledby="use-cases-heading"
     >
       {/* Subtle technical background grid */}
@@ -92,7 +92,7 @@ export const UseCases: React.FC = () => {
             </div>
             <h2
               id="use-cases-heading"
-              className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-ink-primary leading-[1.12]"
+              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium tracking-tight text-ink-primary leading-[1.12]"
             >
               Engineered for systems where storage is the critical path.
             </h2>

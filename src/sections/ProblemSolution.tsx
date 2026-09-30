@@ -241,7 +241,7 @@ export const ProblemSolution: React.FC = () => {
             />
             <h2
               id="problem-heading"
-              className="font-display text-[1.75rem] sm:text-[2.2rem] md:text-[2.8rem] font-medium leading-[1.1] tracking-tight text-ink-primary mb-5"
+              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-[1.12] tracking-tight text-ink-primary mb-5"
             >
               Isolated drives. Network bottlenecks.{' '}
               <span className="text-ink-tertiary">Escalating cost.</span>
@@ -334,7 +334,7 @@ export const ProblemSolution: React.FC = () => {
               dot={true}
               className="mb-5"
             />
-            <h2 className="font-display text-[1.75rem] sm:text-[2.2rem] md:text-[2.8rem] font-medium leading-[1.1] tracking-tight text-ink-primary mb-5">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-[1.12] tracking-tight text-ink-primary mb-5">
               One file system across every node.
             </h2>
             <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-secondary leading-[1.65] max-w-2xl">

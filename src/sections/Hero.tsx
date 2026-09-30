@@ -44,13 +44,13 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      <Container className="relative z-10 pt-16 pb-16 md:pt-24 md:pb-24">
+      <Container className="relative z-10 pt-10 pb-14 sm:pt-14 sm:pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-20">
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             TEXT CONTENT
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
 
         {/* Metadata Kicker Tags */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-8">
+        <div className="flex flex-wrap items-center gap-2.5 mb-6">
           {HERO_TAGS.map((tag) => (
             <span
               key={tag}
@@ -65,7 +65,7 @@ export const Hero: React.FC = () => {
         {/* Headline */}
         <h1
           id="hero-heading"
-          className="font-display text-[2.4rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.2rem] font-medium leading-[1.06] tracking-tight text-ink-inverse max-w-[820px] mb-6"
+          className="font-display text-[2.5rem] sm:text-[3.2rem] md:text-[3.75rem] lg:text-[4.25rem] font-medium leading-[1.06] tracking-tight text-ink-inverse max-w-[840px] mb-5"
         >
           Shared storage.
           <br />
@@ -73,55 +73,60 @@ export const Hero: React.FC = () => {
         </h1>
 
         {/* Supporting Copy */}
-        <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-inverse-sub leading-[1.65] max-w-[620px] mb-10">
+        <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-inverse-sub leading-[1.6] max-w-[640px] mb-8">
           Japolic connects distributed compute to unified shared storage
           over standard POSIX file interfaces — near-local NVMe speeds, native
           S3 compatibility, and automatic cold-data tiering without rewriting
           your application.
         </p>
 
-        {/* CTA Cluster */}
-        <div className="flex flex-wrap items-center gap-3.5 mb-10">
-          <a
-            href="#capabilities"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
-          >
-            <span>Explore Japolic</span>
-            <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
-          </a>
-          <a
-            href="#docs"
-            className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
-          >
-            <BookOpen size={14} strokeWidth={1.8} className="transition-transform duration-150 group-hover:-translate-y-0.5" />
-            <span>Read the docs</span>
-          </a>
-        </div>
-
-        {/* CLI Quick-Mount Snippet */}
-        <div className="max-w-lg mb-14 md:mb-20">
-          <div className="flex items-center justify-between px-3.5 py-2 bg-[#1A1815] border border-hairline-dark rounded-xs font-mono text-xs group hover:border-[#38342E] transition-colors">
-            <div className="flex items-center gap-2 overflow-x-auto py-0.5">
-              <span className="text-olive-light select-none shrink-0 font-semibold">$</span>
-              <code className="text-ink-inverse-sub group-hover:text-ink-inverse transition-colors whitespace-nowrap">
-                {MOUNT_COMMAND}
-              </code>
-            </div>
-            <button
-              onClick={handleCopy}
-              className="ml-3 shrink-0 p-1.5 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
-              aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
+        {/* Action Row: CTAs & Quick-Mount Snippet */}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-7 mb-10 lg:mb-14">
+          {/* Primary & Secondary CTA */}
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="#capabilities"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light hover:shadow-card active:bg-olive-dim transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
             >
-              {copied ? (
-                <Check size={13} className="text-olive-light" />
-              ) : (
-                <Copy size={13} />
-              )}
-            </button>
+              <span>Explore Japolic</span>
+              <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-150 group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="#docs"
+              className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 interactive-button focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+            >
+              <BookOpen size={14} strokeWidth={1.8} className="transition-transform duration-150 group-hover:-translate-y-0.5" />
+              <span>Read the docs</span>
+            </a>
           </div>
-          <p className="mt-1.5 font-mono text-[10px] text-ink-inverse-mute tracking-wide pl-1">
-            Mount any S3 bucket as a local filesystem in one command.
-          </p>
+
+          <div className="h-4 w-px bg-white/[0.1] hidden lg:block" />
+
+          {/* CLI Quick-Mount Snippet */}
+          <div className="max-w-md w-full">
+            <div className="flex items-center justify-between px-3 py-1.5 bg-[#1A1815] border border-hairline-dark rounded-xs font-mono text-xs group hover:border-[#38342E] transition-colors">
+              <div className="flex items-center gap-2 overflow-x-auto py-0.5">
+                <span className="text-olive-light select-none shrink-0 font-semibold">$</span>
+                <code className="text-ink-inverse-sub group-hover:text-ink-inverse transition-colors whitespace-nowrap text-[11px]">
+                  {MOUNT_COMMAND}
+                </code>
+              </div>
+              <button
+                onClick={handleCopy}
+                className="ml-2.5 shrink-0 p-1 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive active:scale-95"
+                aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
+              >
+                {copied ? (
+                  <Check size={12} className="text-olive-light" />
+                ) : (
+                  <Copy size={12} />
+                )}
+              </button>
+            </div>
+            <p className="mt-1 font-mono text-[10px] text-ink-inverse-mute tracking-wide pl-1">
+              Mount any S3 bucket as a local filesystem in one command.
+            </p>
+          </div>
         </div>
 
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

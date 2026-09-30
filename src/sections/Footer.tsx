@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
             PRE-FOOTER CONCLUSION CTA BLOCK
             ═══════════════════════════════════════════════════════ */}
         <ScrollReveal>
-          <div className="pt-20 sm:pt-28 pb-16 md:pb-24 border-b border-hairline-dark">
+          <div className="pt-16 sm:pt-20 lg:pt-24 pb-14 md:pb-20 border-b border-hairline-dark">
             <div className="max-w-3xl">
               {/* Technical system status badge */}
               <div className="mb-6">
@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
               {/* Closing statement */}
               <h2
                 id="footer-heading"
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-ink-inverse leading-[1.12] mb-6"
+                className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[3.25rem] font-medium tracking-tight text-ink-inverse leading-[1.12] mb-6"
               >
                 Build faster on data that keeps up.
               </h2>

@@ -88,7 +88,7 @@ export const ProductFeatures: React.FC = () => {
             <SectionLabel label="PRODUCT" variant="olive" dot className="mb-5" />
             <h2
               id="cap-heading"
-              className="font-display text-[1.75rem] sm:text-[2.2rem] md:text-[2.8rem] font-medium leading-[1.1] tracking-tight text-ink-primary mb-5"
+              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-[1.12] tracking-tight text-ink-primary mb-5"
             >
               One data layer across your infrastructure.
             </h2>
