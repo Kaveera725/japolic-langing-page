@@ -222,10 +222,10 @@ export const ProblemSolution: React.FC = () => {
   return (
     <section
       id="how-it-works"
-      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-16"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light scroll-mt-[72px]"
       aria-labelledby="problem-heading"
     >
-      <div id="problem-solution" className="scroll-mt-24" />
+
       <Container>
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             PROBLEM PHASE
@@ -349,7 +349,7 @@ export const ProblemSolution: React.FC = () => {
             {RESOLUTIONS.map((item, idx) => (
               <div
                 key={item.num}
-                className={`relative p-5 sm:p-8 group hover:bg-[#FAF8F3] transition-colors duration-200 ${
+                className={`relative p-5 sm:p-8 group hover:bg-canvas-subtle transition-colors duration-200 ${
                   idx < RESOLUTIONS.length - 1
                     ? 'border-b md:border-b-0 md:border-r border-hairline-light'
                     : ''
@@ -455,7 +455,7 @@ export const ProblemSolution: React.FC = () => {
 
           {/* Section Footnote */}
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-ink-tertiary">
-            <span className="tracking-wide">SPEC: CACHE-COHERENT REPLICATION // ZERO-STAGING PIPELINE // POSIX VFS</span>
+            <span className="tracking-wide">JAPOLIC FILE SYSTEM · POSIX-COMPATIBLE · S3-BACKED</span>
             <a
               href="#capabilities"
               className="inline-flex items-center gap-1.5 text-olive hover:text-olive-light transition-colors font-medium tracking-wide"

@@ -123,12 +123,12 @@ export const ProductFeatures: React.FC = () => {
                     }
                   }}
                   className={`
-                    relative px-5 py-5 border-l-[3px] transition-all duration-300 cursor-default outline-none
+                    relative px-5 py-5 border-l-2 transition-all duration-200 cursor-default outline-none
                     focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-inset
                     ${active === idx
                       ? 'border-l-olive bg-olive-wash/40'
                       : active !== null
-                        ? 'border-l-transparent opacity-40'
+                        ? 'border-l-transparent opacity-45'
                         : 'border-l-transparent hover:border-l-olive/40 hover:bg-canvas-subtle/40'
                     }
                     ${idx < CAPABILITIES.length - 1 ? 'border-b border-b-hairline-light' : ''}
@@ -137,7 +137,7 @@ export const ProductFeatures: React.FC = () => {
                   {/* Top row: number + tag */}
                   <div className="flex items-center gap-2.5 mb-2.5">
                     <span
-                      className={`font-display text-xl font-medium transition-colors duration-300 ${
+                      className={`font-display text-xl font-medium transition-colors duration-200 ${
                         active === idx ? 'text-olive' : 'text-ink-muted'
                       }`}
                     >
@@ -161,7 +161,7 @@ export const ProductFeatures: React.FC = () => {
                   {/* Spec footer */}
                   <div className="mt-3 font-mono text-[10px] text-ink-tertiary tracking-wide flex items-center gap-1.5">
                     <span
-                      className={`h-1 w-1 rounded-full transition-colors duration-300 ${
+                      className={`h-1 w-1 rounded-full transition-colors duration-200 ${
                         active === idx ? 'bg-olive' : 'bg-ink-muted'
                       }`}
                     />

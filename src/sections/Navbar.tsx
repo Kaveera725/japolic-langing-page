@@ -126,12 +126,7 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* =================================================================
-              CENTER / RIGHT: NAVIGATION LINKS
-              ================================================================= */}
-          {/* =================================================================
-              CENTER / RIGHT: NAVIGATION LINKS
-              ================================================================= */}
+
           <nav
             aria-label="Primary navigation"
             className="hidden md:flex items-center gap-7 text-sm font-sans"
@@ -172,7 +167,7 @@ export const Navbar: React.FC = () => {
               className="inline-flex items-center gap-1.5 text-xs font-mono text-ink-tertiary hover:text-ink-primary transition-colors px-2 py-1 rounded-xs hover:bg-canvas-subtle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
             >
               <Terminal size={12} className="text-olive" />
-              <span>v0.9.4</span>
+              <span>Docs</span>
             </a>
 
             {/* Primary Action Button */}
@@ -276,7 +271,7 @@ export const Navbar: React.FC = () => {
                 <ArrowUpRight size={14} />
               </a>
               <div className="text-center font-mono text-[10px] text-ink-tertiary mt-1">
-                JAPOLIC STORAGE SYSTEMS // REV 0.9.4
+                JAPOLIC STORAGE SYSTEMS
               </div>
             </div>
           </Container>

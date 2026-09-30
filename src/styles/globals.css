@@ -16,6 +16,24 @@
     background-color: var(--color-canvas-base);
     color: var(--color-text-primary);
     font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Global link underline offset for readability */
+  a {
+    text-underline-offset: 3px;
+  }
+
+  /* Headings: enforce consistent letter-spacing baseline */
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Prevent paragraph orphans where supported */
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
@@ -41,6 +59,19 @@
   }
   .border-hairline-dark {
     border-color: var(--color-border-dark);
+  }
+
+  /* Scroll offset for sticky nav (64px = h-16) */
+  .scroll-section {
+    scroll-margin-top: 72px;
+  }
+
+  /* Technical grid background pattern used in use-cases section */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(63, 87, 68, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(63, 87, 68, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
   /* Restrained Interactive Utilities */
@@ -146,6 +177,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
     transform: none !important;
+    will-change: auto !important;
   }
 
   svg animate,

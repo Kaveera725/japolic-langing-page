@@ -71,7 +71,7 @@ export const UseCases: React.FC = () => {
   return (
     <section
       id="use-cases"
-      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light relative overflow-hidden"
+      className="py-20 md:py-28 bg-canvas-base border-b border-hairline-light relative overflow-hidden scroll-mt-[72px]"
       aria-labelledby="use-cases-heading"
     >
       {/* Subtle technical background grid */}
@@ -98,7 +98,7 @@ export const UseCases: React.FC = () => {
 
         {/* ── Editorial Module Grid (Rhythmic 2-Column Ledger) ── */}
         <ScrollReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-xs overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-300">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-hairline-strong border border-hairline-strong rounded-xs overflow-hidden shadow-subtle hover:shadow-card transition-shadow duration-200">
             {USE_CASES.map((uc, index) => {
               const isHovered = activeTab === index;
               return (
@@ -107,7 +107,7 @@ export const UseCases: React.FC = () => {
                   onMouseEnter={() => setActiveTab(index)}
                   onMouseLeave={() => setActiveTab(null)}
                   className={`relative bg-canvas-elevated p-5 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
-                    isHovered ? 'bg-[#FAF8F2]' : ''
+                    isHovered ? 'bg-canvas-subtle' : ''
                   }`}
                 >
                   {/* ── Module Top Bar: Number + Audience Badge ── */}

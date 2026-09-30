@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      <Container className="relative z-10 pt-10 pb-14 sm:pt-14 sm:pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-20">
+      <Container className="relative z-10 pt-12 pb-16 md:pt-20 md:pb-24">
         {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             TEXT CONTENT
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}

@@ -4,7 +4,7 @@ import { SystemStatusIndicator, TechnicalLabel } from './visuals';
 export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
     <div
-      className={`rounded-md border border-hairline-dark bg-canvas-dark-card overflow-hidden shadow-terminal ${className}`}
+      className={`rounded-sm border border-hairline-dark bg-canvas-dark-card overflow-hidden shadow-terminal ${className}`}
     >
       {/* ── Instrument Title Bar ── */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-hairline-dark bg-[#1A1815]">
@@ -12,7 +12,7 @@ export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className =
           <SystemStatusIndicator
             status="active"
             label="NOMINAL"
-            sublabel="// ARCH-TOPOLOGY JAPOLIC VFS v0.9"
+            sublabel="// ARCH-TOPOLOGY · JAPOLIC VFS"
             theme="dark"
             size="sm"
           />
