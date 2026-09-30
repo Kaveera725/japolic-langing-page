@@ -1,84 +1,132 @@
 import React, { useState } from 'react';
 import { Container } from '../components/Container';
-import { Button } from '../components/Button';
-import { SectionLabel } from '../components/SectionLabel';
 import { TechnicalDiagram } from '../components/TechnicalDiagram';
-import { HERO_CONTENT } from '../data/content';
-import { ArrowRight, Copy, Check } from 'lucide-react';
+import { ArrowRight, BookOpen, Copy, Check } from 'lucide-react';
+
+const HERO_TAGS = ['FILE SYSTEM', 'SHARED STORAGE', 'S3 COMPATIBLE'] as const;
+
+const MOUNT_COMMAND = 'japolic mount --target=s3://your-bucket /mnt/shared';
 
 export const Hero: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(HERO_CONTENT.mountCommand);
+    navigator.clipboard.writeText(MOUNT_COMMAND);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section className="relative overflow-hidden bg-canvas-dark text-ink-inverse pt-16 pb-20 md:pt-24 md:pb-28 border-b border-hairline-dark">
-      <Container>
-        <div className="flex flex-col items-start max-w-4xl">
-          {/* Category Kicker */}
-          <SectionLabel
-            label={HERO_CONTENT.kicker}
-            variant="dark"
-            dot={true}
-            className="mb-6"
-          />
+    <section
+      className="relative overflow-hidden bg-canvas-dark border-b border-hairline-dark"
+      aria-labelledby="hero-heading"
+    >
+      {/* ── Subtle Engineering Grid Background ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: [
+            'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px)',
+            'linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+          ].join(','),
+          backgroundSize: '32px 32px',
+        }}
+      />
 
-          {/* Headline */}
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-medium leading-[1.12] tracking-tight text-ink-inverse mb-6">
-            {HERO_CONTENT.heading}
-          </h1>
+      {/* ── Radial warm glow at top-left ── */}
+      <div
+        className="absolute -top-32 -left-32 w-[600px] h-[600px] pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(63,87,68,0.08) 0%, transparent 65%)',
+        }}
+      />
 
-          {/* Subheading */}
-          <p className="font-sans text-base sm:text-lg text-ink-inverse-sub leading-relaxed max-w-3xl mb-8">
-            {HERO_CONTENT.subheading}
-          </p>
+      <Container className="relative z-10 pt-16 pb-16 md:pt-24 md:pb-24">
+        {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            TEXT CONTENT
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
 
-          {/* Interaction Cluster */}
-          <div className="flex flex-wrap items-center gap-4 mb-8">
-            <Button
-              variant="primary"
-              size="lg"
-              href="#access"
-              icon={<ArrowRight size={16} />}
+        {/* Metadata Kicker Tags */}
+        <div className="flex flex-wrap items-center gap-2.5 mb-8">
+          {HERO_TAGS.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-1.5 px-2 py-[3px] rounded-xs border border-white/[0.08] bg-white/[0.03] font-mono text-[10px] sm:text-[11px] tracking-widest text-ink-inverse-mute"
             >
-              {HERO_CONTENT.primaryCta}
-            </Button>
-            <Button
-              variant="inverse"
-              size="lg"
-              href="#docs"
-            >
-              {HERO_CONTENT.secondaryCta}
-            </Button>
-          </div>
+              <span className="h-[5px] w-[5px] rounded-full bg-olive" />
+              {tag}
+            </span>
+          ))}
+        </div>
 
-          {/* Quick Mount CLI Snippet */}
-          <div className="w-full max-w-xl mb-12">
-            <div className="flex items-center justify-between px-3 py-2 bg-canvas-dark-subtle/80 border border-hairline-dark rounded-sm font-mono text-xs text-ink-inverse-sub">
-              <div className="flex items-center gap-2 overflow-x-auto py-0.5">
-                <span className="text-olive-light select-none">$</span>
-                <span className="text-ink-inverse font-mono">{HERO_CONTENT.mountCommand}</span>
-              </div>
-              <button
-                onClick={handleCopy}
-                className="ml-3 shrink-0 p-1.5 hover:text-white transition-colors"
-                title="Copy mount command"
-                aria-label="Copy mount command"
-              >
-                {copied ? <Check size={14} className="text-olive-light" /> : <Copy size={14} />}
-              </button>
+        {/* Headline */}
+        <h1
+          id="hero-heading"
+          className="font-display text-[2.4rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.2rem] font-medium leading-[1.06] tracking-tight text-ink-inverse max-w-[820px] mb-6"
+        >
+          Shared storage.
+          <br />
+          <span className="text-olive-light">Local-disk performance.</span>
+        </h1>
+
+        {/* Supporting Copy */}
+        <p className="font-sans text-[15px] sm:text-base md:text-lg text-ink-inverse-sub leading-[1.65] max-w-[620px] mb-10">
+          Japolic connects distributed compute to unified shared storage
+          over standard POSIX file interfaces — near-local NVMe speeds, native
+          S3 compatibility, and automatic cold-data tiering without rewriting
+          your application.
+        </p>
+
+        {/* CTA Cluster */}
+        <div className="flex flex-wrap items-center gap-3.5 mb-10">
+          <a
+            href="#access"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xs bg-olive text-white font-sans text-sm font-medium tracking-tight border border-[#2F4233] shadow-subtle hover:bg-olive-light active:bg-olive-dim transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-canvas-dark"
+          >
+            Explore Japolic
+            <ArrowRight size={15} strokeWidth={2} />
+          </a>
+          <a
+            href="#docs"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xs bg-white/[0.04] text-ink-inverse-sub font-sans text-sm border border-white/[0.12] hover:bg-white/[0.08] hover:text-ink-inverse hover:border-white/[0.25] transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+          >
+            <BookOpen size={14} strokeWidth={1.8} />
+            Read the docs
+          </a>
+        </div>
+
+        {/* CLI Quick-Mount Snippet */}
+        <div className="max-w-lg mb-14 md:mb-20">
+          <div className="flex items-center justify-between px-3.5 py-2 bg-[#1A1815] border border-hairline-dark rounded-xs font-mono text-xs group">
+            <div className="flex items-center gap-2 overflow-x-auto py-0.5">
+              <span className="text-olive-light select-none shrink-0 font-semibold">$</span>
+              <code className="text-ink-inverse-sub group-hover:text-ink-inverse transition-colors whitespace-nowrap">
+                {MOUNT_COMMAND}
+              </code>
             </div>
+            <button
+              onClick={handleCopy}
+              className="ml-3 shrink-0 p-1.5 text-ink-inverse-mute hover:text-white transition-colors rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-olive"
+              aria-label={copied ? 'Copied to clipboard' : 'Copy mount command to clipboard'}
+            >
+              {copied ? (
+                <Check size={13} className="text-olive-light" />
+              ) : (
+                <Copy size={13} />
+              )}
+            </button>
           </div>
+          <p className="mt-1.5 font-mono text-[10px] text-ink-inverse-mute tracking-wide pl-1">
+            Mount any S3 bucket as a local filesystem in one command.
+          </p>
         </div>
 
-        {/* Technical Architecture Schematic */}
-        <div className="mt-4">
-          <TechnicalDiagram />
-        </div>
+        {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            ARCHITECTURE DIAGRAM
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+        <TechnicalDiagram />
       </Container>
     </section>
   );
