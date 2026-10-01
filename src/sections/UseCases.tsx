@@ -104,9 +104,12 @@ export const UseCases: React.FC = () => {
               return (
                 <article
                   key={uc.num}
+                  tabIndex={0}
                   onMouseEnter={() => setActiveTab(index)}
                   onMouseLeave={() => setActiveTab(null)}
-                  className={`relative bg-canvas-elevated p-5 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group ${
+                  onFocus={() => setActiveTab(index)}
+                  onBlur={() => setActiveTab(null)}
+                  className={`relative bg-canvas-elevated p-5 sm:p-8 md:p-10 flex flex-col justify-between transition-colors duration-200 group outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-olive ${
                     isHovered ? 'bg-canvas-subtle' : ''
                   }`}
                 >
@@ -269,7 +272,7 @@ export const UseCases: React.FC = () => {
 
         {/* ── Section Terminal CTA ── */}
         <ScrollReveal delayMs={100}>
-          <div className="mt-14 md:mt-20 pt-8 sm:pt-10 border-t border-hairline-strong flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-6 sm:p-10 border border-hairline-light rounded-xs shadow-subtle hover:shadow-card transition-shadow duration-300">
+          <div className="mt-14 md:mt-20 flex flex-col md:flex-row items-center justify-between gap-6 bg-canvas-elevated p-6 sm:p-10 border border-hairline-light rounded-sm shadow-subtle hover:shadow-card transition-shadow duration-200">
             <div className="max-w-xl text-center md:text-left">
               <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">
                 GET STARTED

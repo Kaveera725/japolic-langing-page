@@ -68,7 +68,7 @@ export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className =
         <div className="p-3.5 bg-[#1A1815] border border-olive/40 rounded-xs shadow-subtle">
           <div className="flex items-center justify-between font-mono text-[11px] font-semibold text-olive-light mb-2.5 pb-1.5 border-b border-hairline-dark">
             <span>▸ JAPOLIC FILE SYSTEM ENGINE</span>
-            <span className="text-[10px] text-ink-inverse-mute">v0.9.4</span>
+            <span className="text-[10px] text-ink-inverse-mute">STABLE</span>
           </div>
 
           <div className="grid grid-cols-1 gap-2 font-mono text-xs">
@@ -247,7 +247,7 @@ export const TechnicalDiagram: React.FC<{ className?: string }> = ({ className =
             <text x="132" y="167" fill="#E8ECE7" fontSize="11" fontFamily="monospace" fontWeight="600" letterSpacing="0.06em">
               ▸ JAPOLIC FILE SYSTEM ENGINE
             </text>
-            <text x="720" y="167" fill="#526F58" fontSize="9" fontFamily="monospace" textAnchor="end">v0.9.4</text>
+            <text x="720" y="167" fill="#526F58" fontSize="9" fontFamily="monospace" textAnchor="end">STABLE</text>
 
             {/* Sub-module 1: Coherent Cache */}
             <g transform="translate(130, 186)">

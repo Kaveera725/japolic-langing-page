@@ -209,7 +209,7 @@ const TransitionDiagram: React.FC = () => (
       </g>
 
       {/* Corner annotation */}
-      <text x="245" y="530" fill="#A49E93" fontSize="7" fontFamily="monospace" textAnchor="end">ARCH-FLOW // v0.9</text>
+      <text x="245" y="530" fill="#A49E93" fontSize="7" fontFamily="monospace" textAnchor="end">ARCH-FLOW · JAPOLIC</text>
     </svg>
   </div>
 );

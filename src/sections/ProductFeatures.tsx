@@ -376,7 +376,7 @@ export const ProductFeatures: React.FC = () => {
                     <rect x="40" y="186" width="600" height="12" fill="#E8ECE7" />
                     <line x1="40" y1="198" x2="640" y2="198" stroke="#3F5744" strokeWidth="0.5" opacity="0.25" />
                     <text x="60" y="190" fill="#3F5744" fontSize="11" fontFamily="monospace" fontWeight="600" letterSpacing="0.05em">▸ JAPOLIC FILE SYSTEM ENGINE</text>
-                    <text x="615" y="190" fill="#526F58" fontSize="9" fontFamily="monospace" textAnchor="end">v0.9</text>
+                    <text x="615" y="190" fill="#526F58" fontSize="9" fontFamily="monospace" textAnchor="end">STABLE</text>
                   </g>
 
                   {/* Cache module (inside Japolic) */}
@@ -459,7 +459,7 @@ export const ProductFeatures: React.FC = () => {
                   </g>
 
                   {/* Corner annotation */}
-                  <text x="660" y="425" fill="#DDD7CB" fontSize="7" fontFamily="monospace" textAnchor="end">TOPOLOGY // v0.9-VFS</text>
+                  <text x="660" y="425" fill="#DDD7CB" fontSize="7" fontFamily="monospace" textAnchor="end">TOPOLOGY · VFS</text>
                 </svg>
               </div>
 
